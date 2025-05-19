@@ -36,11 +36,11 @@ namespace SerwisTelefonow
             label1 = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
             panel1 = new Panel();
-            textBox2 = new TextBox();
+            textBoxPassword = new TextBox();
             label3 = new Label();
             label2 = new Label();
-            textBox1 = new TextBox();
-            button2 = new Button();
+            textBoxLogin = new TextBox();
+            buttonCheck = new Button();
             flowLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -48,15 +48,18 @@ namespace SerwisTelefonow
             // buttonAdminPanel
             // 
             buttonAdminPanel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            buttonAdminPanel.BackColor = Color.SteelBlue;
+            buttonAdminPanel.BackColor = Color.FromArgb(0, 120, 215);
             buttonAdminPanel.Cursor = Cursors.Hand;
             buttonAdminPanel.FlatAppearance.BorderSize = 0;
+            buttonAdminPanel.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 90, 170);
+            buttonAdminPanel.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 150, 255);
             buttonAdminPanel.FlatStyle = FlatStyle.Flat;
-            buttonAdminPanel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            buttonAdminPanel.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
             buttonAdminPanel.ForeColor = Color.White;
-            buttonAdminPanel.Location = new Point(614, 12);
+            buttonAdminPanel.Location = new Point(1200, 20);
+            buttonAdminPanel.Margin = new Padding(4, 5, 4, 5);
             buttonAdminPanel.Name = "buttonAdminPanel";
-            buttonAdminPanel.Size = new Size(174, 35);
+            buttonAdminPanel.Size = new Size(180, 40);
             buttonAdminPanel.TabIndex = 0;
             buttonAdminPanel.Text = "Panel Administratora";
             buttonAdminPanel.UseVisualStyleBackColor = false;
@@ -66,24 +69,24 @@ namespace SerwisTelefonow
             // 
             labelMobileSerwisTitle.Anchor = AnchorStyles.Top;
             labelMobileSerwisTitle.AutoSize = true;
-            labelMobileSerwisTitle.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelMobileSerwisTitle.ForeColor = Color.SteelBlue;
-            labelMobileSerwisTitle.Location = new Point(79, 20);
-            labelMobileSerwisTitle.Margin = new Padding(3, 0, 3, 20);
+            labelMobileSerwisTitle.Font = new Font("Segoe UI", 28F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelMobileSerwisTitle.ForeColor = Color.FromArgb(0, 120, 215);
+            labelMobileSerwisTitle.Location = new Point(120, 30);
+            labelMobileSerwisTitle.Margin = new Padding(4, 0, 4, 20);
             labelMobileSerwisTitle.Name = "labelMobileSerwisTitle";
-            labelMobileSerwisTitle.Size = new Size(287, 54);
+            labelMobileSerwisTitle.Size = new Size(290, 51);
             labelMobileSerwisTitle.TabIndex = 1;
             labelMobileSerwisTitle.Text = "Mobile Serwis";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label1.ForeColor = Color.DimGray;
-            label1.Location = new Point(23, 94);
-            label1.Margin = new Padding(3, 0, 3, 20);
+            label1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label1.ForeColor = Color.FromArgb(64, 64, 64);
+            label1.Location = new Point(30, 100);
+            label1.Margin = new Padding(4, 0, 4, 30);
             label1.Name = "label1";
-            label1.Size = new Size(283, 80);
+            label1.Size = new Size(420, 80);
             label1.TabIndex = 2;
             label1.Text = "W celu sprawdzenia postępu naprawy \r\nzachęcamy do skorzystania z poniższego \r\nformularza. Prosimy podać login i hasło \r\nzamieszczone na karcie serwisowej:";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -93,100 +96,115 @@ namespace SerwisTelefonow
             flowLayoutPanel1.Anchor = AnchorStyles.None;
             flowLayoutPanel1.AutoSize = true;
             flowLayoutPanel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            flowLayoutPanel1.BackColor = Color.White;
             flowLayoutPanel1.Controls.Add(labelMobileSerwisTitle);
             flowLayoutPanel1.Controls.Add(label1);
             flowLayoutPanel1.Controls.Add(panel1);
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel1.Location = new Point(162, 18);
-            flowLayoutPanel1.MinimumSize = new Size(446, 420);
+            flowLayoutPanel1.Location = new Point(500, 150);
+            flowLayoutPanel1.Margin = new Padding(4, 5, 4, 5);
+            flowLayoutPanel1.MinimumSize = new Size(500, 400);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Padding = new Padding(20);
-            flowLayoutPanel1.Size = new Size(446, 420);
+            flowLayoutPanel1.Padding = new Padding(20, 25, 20, 25);
+            flowLayoutPanel1.Size = new Size(500, 400);
             flowLayoutPanel1.TabIndex = 4;
             flowLayoutPanel1.WrapContents = false;
             // 
             // panel1
             // 
-            panel1.BackColor = Color.WhiteSmoke;
+            panel1.BackColor = Color.White;
             panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Controls.Add(textBox2);
+            panel1.Controls.Add(textBoxPassword);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
-            panel1.Controls.Add(textBox1);
-            panel1.Controls.Add(button2);
-            panel1.Location = new Point(23, 197);
+            panel1.Controls.Add(textBoxLogin);
+            panel1.Controls.Add(buttonCheck);
+            panel1.Location = new Point(30, 210);
+            panel1.Margin = new Padding(10, 0, 10, 0);
             panel1.Name = "panel1";
-            panel1.Padding = new Padding(20);
-            panel1.Size = new Size(400, 200);
+            panel1.Padding = new Padding(25, 20, 25, 20);
+            panel1.Size = new Size(440, 220);
             panel1.TabIndex = 3;
             // 
-            // textBox2
+            // textBoxPassword
             // 
-            textBox2.BorderStyle = BorderStyle.FixedSingle;
-            textBox2.Font = new Font("Segoe UI", 10F);
-            textBox2.Location = new Point(120, 80);
-            textBox2.Name = "textBox2";
-            textBox2.PasswordChar = '*';
-            textBox2.Size = new Size(200, 30);
-            textBox2.TabIndex = 6;
+            textBoxPassword.BorderStyle = BorderStyle.FixedSingle;
+            textBoxPassword.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxPassword.Location = new Point(150, 90);
+            textBoxPassword.Margin = new Padding(4, 5, 4, 5);
+            textBoxPassword.Name = "textBoxPassword";
+            textBoxPassword.PasswordChar = '•';
+            textBoxPassword.Size = new Size(240, 27);
+            textBoxPassword.TabIndex = 6;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 10F);
-            label3.Location = new Point(30, 83);
+            label3.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label3.Location = new Point(50, 90);
+            label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(53, 23);
+            label3.Size = new Size(52, 20);
             label3.TabIndex = 5;
-            label3.Text = "Hasło";
+            label3.Text = "Hasło:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 10F);
-            label2.Location = new Point(30, 33);
+            label2.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label2.Location = new Point(50, 40);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(52, 23);
+            label2.Size = new Size(51, 20);
             label2.TabIndex = 4;
-            label2.Text = "Login";
+            label2.Text = "Login:";
             // 
-            // textBox1
+            // textBoxLogin
             // 
-            textBox1.BorderStyle = BorderStyle.FixedSingle;
-            textBox1.Font = new Font("Segoe UI", 10F);
-            textBox1.Location = new Point(120, 30);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(200, 30);
-            textBox1.TabIndex = 3;
+            textBoxLogin.BorderStyle = BorderStyle.FixedSingle;
+            textBoxLogin.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxLogin.Location = new Point(150, 37);
+            textBoxLogin.Margin = new Padding(4, 5, 4, 5);
+            textBoxLogin.Name = "textBoxLogin";
+            textBoxLogin.Size = new Size(240, 27);
+            textBoxLogin.TabIndex = 3;
             // 
-            // button2
+            // buttonCheck
             // 
-            button2.BackColor = Color.SteelBlue;
-            button2.Cursor = Cursors.Hand;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(150, 130);
-            button2.Name = "button2";
-            button2.Size = new Size(120, 40);
-            button2.TabIndex = 7;
-            button2.Text = "Sprawdź";
-            button2.UseVisualStyleBackColor = false;
+            buttonCheck.BackColor = Color.FromArgb(0, 120, 215);
+            buttonCheck.Cursor = Cursors.Hand;
+            buttonCheck.FlatAppearance.BorderSize = 0;
+            buttonCheck.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 90, 170);
+            buttonCheck.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 150, 255);
+            buttonCheck.FlatStyle = FlatStyle.Flat;
+            buttonCheck.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            buttonCheck.ForeColor = Color.White;
+            buttonCheck.Location = new Point(150, 150);
+            buttonCheck.Margin = new Padding(4, 5, 4, 5);
+            buttonCheck.Name = "buttonCheck";
+            buttonCheck.Size = new Size(140, 40);
+            buttonCheck.TabIndex = 7;
+            buttonCheck.Text = "Sprawdź";
+            buttonCheck.UseVisualStyleBackColor = false;
             // 
             // StronaGlowna
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.FromArgb(240, 245, 250);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(1400, 800);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(buttonAdminPanel);
+            Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            MinimumSize = new Size(600, 400);
+            Margin = new Padding(4, 5, 4, 5);
+            MinimumSize = new Size(800, 600);
             Name = "StronaGlowna";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Mobile Serwis";
+            WindowState = FormWindowState.Maximized;
             flowLayoutPanel1.ResumeLayout(false);
             flowLayoutPanel1.PerformLayout();
             panel1.ResumeLayout(false);
@@ -200,12 +218,12 @@ namespace SerwisTelefonow
         private Button buttonAdminPanel;
         private Label labelMobileSerwisTitle;
         private Label label1;
-        private TextBox textBox1;
-        private Label label2;
-        private Label label3;
-        private TextBox textBox2;
-        private Button button2;
-        private Panel panel1;
         private FlowLayoutPanel flowLayoutPanel1;
+        private Panel panel1;
+        private TextBox textBoxPassword;
+        private Label label3;
+        private Label label2;
+        private TextBox textBoxLogin;
+        private Button buttonCheck;
     }
 }

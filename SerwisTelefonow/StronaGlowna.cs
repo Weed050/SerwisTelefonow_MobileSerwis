@@ -10,8 +10,8 @@ namespace SerwisTelefonow
         private void buttonAdminPanel_Click(object sender, EventArgs e)
         {
             PanelAdministratora adminPanel = new PanelAdministratora();
-            adminPanel.ShowDialog();
-            this.Close();
+            adminPanel.Show();
+            this.Hide();
         }
     }
 }
