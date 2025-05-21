@@ -52,7 +52,32 @@ namespace SerwisTelefonow
 
         private void przegladajWpisyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //searchServRecords
+            SearchServRecords searchServRecords = new SearchServRecords();
+            OpenForm(searchServRecords);
+        }
+
+        private void wyświetlFakturyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showInvoices showInvoices = new showInvoices();
+            OpenForm(showInvoices);
+        }
+
+        private void dodajFakturęToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddInvoice addInvoice = new AddInvoice();
+            OpenForm(addInvoice);
+        }
+
+        private void sprawdźModelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CheckModel checkModel = new CheckModel();
+            OpenForm(checkModel);
+        }
+
+        private void wycenaNaprawyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CheckServisPrice checkServisPrice = new CheckServisPrice();
+            OpenForm(checkServisPrice);
         }
     }
 }

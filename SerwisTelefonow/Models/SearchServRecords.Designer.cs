@@ -30,29 +30,29 @@ namespace SerwisTelefonow.Models
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
+            dataGridViewServRecords = new DataGridView();
             labelTitle = new Label();
             panel1 = new Panel();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewServRecords).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
-            // dataGridView1
+            // dataGridViewServRecords
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.BackgroundColor = Color.White;
-            dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(18, 60);
-            dataGridView1.Margin = new Padding(18, 15, 18, 15);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1601, 638);
-            dataGridView1.TabIndex = 0;
+            dataGridViewServRecords.AllowUserToAddRows = false;
+            dataGridViewServRecords.AllowUserToDeleteRows = false;
+            dataGridViewServRecords.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridViewServRecords.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewServRecords.BackgroundColor = Color.White;
+            dataGridViewServRecords.BorderStyle = BorderStyle.None;
+            dataGridViewServRecords.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewServRecords.Location = new Point(18, 60);
+            dataGridViewServRecords.Margin = new Padding(18, 15, 18, 15);
+            dataGridViewServRecords.Name = "dataGridViewServRecords";
+            dataGridViewServRecords.ReadOnly = true;
+            dataGridViewServRecords.RowHeadersWidth = 51;
+            dataGridViewServRecords.Size = new Size(1601, 638);
+            dataGridViewServRecords.TabIndex = 0;
             // 
             // labelTitle
             // 
@@ -69,7 +69,7 @@ namespace SerwisTelefonow.Models
             // panel1
             // 
             panel1.Controls.Add(labelTitle);
-            panel1.Controls.Add(dataGridView1);
+            panel1.Controls.Add(dataGridViewServRecords);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(3, 2, 3, 2);
@@ -88,7 +88,7 @@ namespace SerwisTelefonow.Models
             Margin = new Padding(3, 2, 3, 2);
             Name = "SearchServRecords";
             Text = "Mobile Serwis - Historia Napraw";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewServRecords).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -96,7 +96,7 @@ namespace SerwisTelefonow.Models
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView dataGridViewServRecords;
         private Label labelTitle;
         private Panel panel1;
     }
