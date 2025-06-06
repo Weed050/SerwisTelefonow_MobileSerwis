@@ -28,48 +28,48 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBoxPassword = new TextBox();
-            textBox1 = new TextBox();
+            textBoxImie = new TextBox();
+            textBoxNazwisko = new TextBox();
             label2 = new Label();
             buttonCheck = new Button();
             label1 = new Label();
             labelMobileSerwisTitle = new Label();
-            label3 = new Label();
             label4 = new Label();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
+            textBoxTelefon = new TextBox();
+            textBoxBrand = new TextBox();
             label5 = new Label();
-            textBox5 = new TextBox();
+            textBoxImei = new TextBox();
             label6 = new Label();
-            textBox6 = new TextBox();
+            textBoxDesc = new TextBox();
             label7 = new Label();
             groupBox1 = new GroupBox();
-            textBox7 = new TextBox();
+            textBoxFirstPrice = new TextBox();
             groupBox3 = new GroupBox();
             label8 = new Label();
+            textBoxModelPh = new TextBox();
+            label3 = new Label();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
-            // textBoxPassword
+            // textBoxImie
             // 
-            textBoxPassword.BorderStyle = BorderStyle.FixedSingle;
-            textBoxPassword.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBoxPassword.Location = new Point(266, 28);
-            textBoxPassword.Margin = new Padding(4, 5, 4, 5);
-            textBoxPassword.Name = "textBoxPassword";
-            textBoxPassword.Size = new Size(240, 32);
-            textBoxPassword.TabIndex = 7;
+            textBoxImie.BorderStyle = BorderStyle.FixedSingle;
+            textBoxImie.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxImie.Location = new Point(266, 28);
+            textBoxImie.Margin = new Padding(4, 5, 4, 5);
+            textBoxImie.Name = "textBoxImie";
+            textBoxImie.Size = new Size(240, 27);
+            textBoxImie.TabIndex = 7;
             // 
-            // textBox1
+            // textBoxNazwisko
             // 
-            textBox1.BorderStyle = BorderStyle.FixedSingle;
-            textBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBox1.Location = new Point(266, 70);
-            textBox1.Margin = new Padding(4, 5, 4, 5);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(240, 32);
-            textBox1.TabIndex = 8;
+            textBoxNazwisko.BorderStyle = BorderStyle.FixedSingle;
+            textBoxNazwisko.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxNazwisko.Location = new Point(266, 70);
+            textBoxNazwisko.Margin = new Padding(4, 5, 4, 5);
+            textBoxNazwisko.Name = "textBoxNazwisko";
+            textBoxNazwisko.Size = new Size(240, 27);
+            textBoxNazwisko.TabIndex = 8;
             // 
             // label2
             // 
@@ -78,7 +78,7 @@
             label2.Location = new Point(201, 35);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(55, 25);
+            label2.Size = new Size(42, 20);
             label2.TabIndex = 9;
             label2.Text = "Imie:";
             // 
@@ -99,6 +99,7 @@
             buttonCheck.TabIndex = 10;
             buttonCheck.Text = "Zatwietrdź";
             buttonCheck.UseVisualStyleBackColor = false;
+            buttonCheck.Click += buttonCheck_Click;
             // 
             // label1
             // 
@@ -107,7 +108,7 @@
             label1.Location = new Point(157, 84);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(99, 25);
+            label1.Size = new Size(78, 20);
             label1.TabIndex = 11;
             label1.Text = "Nazwisko:";
             // 
@@ -120,20 +121,9 @@
             labelMobileSerwisTitle.Location = new Point(192, 9);
             labelMobileSerwisTitle.Margin = new Padding(4, 0, 4, 20);
             labelMobileSerwisTitle.Name = "labelMobileSerwisTitle";
-            labelMobileSerwisTitle.Size = new Size(707, 62);
+            labelMobileSerwisTitle.Size = new Size(573, 51);
             labelMobileSerwisTitle.TabIndex = 12;
             labelMobileSerwisTitle.Text = "Formularz Wpisu Serwisowego";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label3.Location = new Point(107, 164);
-            label3.Margin = new Padding(4, 0, 4, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(149, 25);
-            label3.TabIndex = 16;
-            label3.Text = "Model telefonu:";
             // 
             // label4
             // 
@@ -142,39 +132,29 @@
             label4.Location = new Point(177, 122);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(79, 25);
+            label4.Size = new Size(63, 20);
             label4.TabIndex = 15;
             label4.Text = "Telefon:";
             // 
-            // textBox2
+            // textBoxTelefon
             // 
-            textBox2.BorderStyle = BorderStyle.FixedSingle;
-            textBox2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBox2.Location = new Point(266, 157);
-            textBox2.Margin = new Padding(4, 5, 4, 5);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(240, 32);
-            textBox2.TabIndex = 14;
+            textBoxTelefon.BorderStyle = BorderStyle.FixedSingle;
+            textBoxTelefon.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxTelefon.Location = new Point(266, 115);
+            textBoxTelefon.Margin = new Padding(4, 5, 4, 5);
+            textBoxTelefon.Name = "textBoxTelefon";
+            textBoxTelefon.Size = new Size(240, 27);
+            textBoxTelefon.TabIndex = 13;
             // 
-            // textBox3
+            // textBoxBrand
             // 
-            textBox3.BorderStyle = BorderStyle.FixedSingle;
-            textBox3.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBox3.Location = new Point(266, 115);
-            textBox3.Margin = new Padding(4, 5, 4, 5);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(240, 32);
-            textBox3.TabIndex = 13;
-            // 
-            // textBox4
-            // 
-            textBox4.BorderStyle = BorderStyle.FixedSingle;
-            textBox4.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBox4.Location = new Point(266, 199);
-            textBox4.Margin = new Padding(4, 5, 4, 5);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(240, 32);
-            textBox4.TabIndex = 17;
+            textBoxBrand.BorderStyle = BorderStyle.FixedSingle;
+            textBoxBrand.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxBrand.Location = new Point(266, 199);
+            textBoxBrand.Margin = new Padding(4, 5, 4, 5);
+            textBoxBrand.Name = "textBoxBrand";
+            textBoxBrand.Size = new Size(240, 27);
+            textBoxBrand.TabIndex = 17;
             // 
             // label5
             // 
@@ -183,19 +163,19 @@
             label5.Location = new Point(184, 206);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
-            label5.Size = new Size(72, 25);
+            label5.Size = new Size(57, 20);
             label5.TabIndex = 18;
             label5.Text = "Marka:";
             // 
-            // textBox5
+            // textBoxImei
             // 
-            textBox5.BorderStyle = BorderStyle.FixedSingle;
-            textBox5.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBox5.Location = new Point(266, 241);
-            textBox5.Margin = new Padding(4, 5, 4, 5);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(240, 32);
-            textBox5.TabIndex = 19;
+            textBoxImei.BorderStyle = BorderStyle.FixedSingle;
+            textBoxImei.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxImei.Location = new Point(266, 241);
+            textBoxImei.Margin = new Padding(4, 5, 4, 5);
+            textBoxImei.Name = "textBoxImei";
+            textBoxImei.Size = new Size(240, 27);
+            textBoxImei.TabIndex = 19;
             // 
             // label6
             // 
@@ -204,20 +184,20 @@
             label6.Location = new Point(201, 248);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
-            label6.Size = new Size(57, 25);
+            label6.Size = new Size(43, 20);
             label6.TabIndex = 20;
             label6.Text = "IMEI:";
             // 
-            // textBox6
+            // textBoxDesc
             // 
-            textBox6.BorderStyle = BorderStyle.FixedSingle;
-            textBox6.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBox6.Location = new Point(266, 324);
-            textBox6.Margin = new Padding(4, 5, 4, 5);
-            textBox6.Multiline = true;
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(240, 83);
-            textBox6.TabIndex = 21;
+            textBoxDesc.BorderStyle = BorderStyle.FixedSingle;
+            textBoxDesc.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxDesc.Location = new Point(266, 324);
+            textBoxDesc.Margin = new Padding(4, 5, 4, 5);
+            textBoxDesc.Multiline = true;
+            textBoxDesc.Name = "textBoxDesc";
+            textBoxDesc.Size = new Size(240, 83);
+            textBoxDesc.TabIndex = 21;
             // 
             // label7
             // 
@@ -226,27 +206,28 @@
             label7.Location = new Point(201, 324);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
-            label7.Size = new Size(55, 25);
+            label7.Size = new Size(43, 20);
             label7.TabIndex = 22;
             label7.Text = "Opis:";
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(textBox7);
-            groupBox1.Controls.Add(textBox4);
+            groupBox1.Controls.Add(label8);
+            groupBox1.Controls.Add(textBoxFirstPrice);
+            groupBox1.Controls.Add(textBoxBrand);
             groupBox1.Controls.Add(label7);
-            groupBox1.Controls.Add(textBoxPassword);
-            groupBox1.Controls.Add(textBox6);
-            groupBox1.Controls.Add(textBox1);
+            groupBox1.Controls.Add(textBoxImie);
+            groupBox1.Controls.Add(textBoxDesc);
+            groupBox1.Controls.Add(textBoxNazwisko);
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(textBox5);
+            groupBox1.Controls.Add(textBoxImei);
             groupBox1.Controls.Add(buttonCheck);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(label1);
-            groupBox1.Controls.Add(textBox3);
+            groupBox1.Controls.Add(textBoxTelefon);
             groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(textBox2);
+            groupBox1.Controls.Add(textBoxModelPh);
             groupBox1.Controls.Add(label4);
             groupBox1.Location = new Point(31, 105);
             groupBox1.Name = "groupBox1";
@@ -254,15 +235,15 @@
             groupBox1.TabIndex = 23;
             groupBox1.TabStop = false;
             // 
-            // textBox7
+            // textBoxFirstPrice
             // 
-            textBox7.BorderStyle = BorderStyle.FixedSingle;
-            textBox7.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBox7.Location = new Point(266, 282);
-            textBox7.Margin = new Padding(4, 5, 4, 5);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(240, 32);
-            textBox7.TabIndex = 23;
+            textBoxFirstPrice.BorderStyle = BorderStyle.FixedSingle;
+            textBoxFirstPrice.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxFirstPrice.Location = new Point(266, 282);
+            textBoxFirstPrice.Margin = new Padding(4, 5, 4, 5);
+            textBoxFirstPrice.Name = "textBoxFirstPrice";
+            textBoxFirstPrice.Size = new Size(240, 27);
+            textBoxFirstPrice.TabIndex = 23;
             // 
             // groupBox3
             // 
@@ -277,18 +258,38 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label8.Location = new Point(31, 389);
+            label8.Location = new Point(38, 284);
             label8.Margin = new Padding(4, 0, 4, 0);
             label8.Name = "label8";
-            label8.Size = new Size(256, 25);
+            label8.Size = new Size(205, 20);
             label8.TabIndex = 24;
             label8.Text = "Proponowana wstępna cena:";
+            // 
+            // textBoxModelPh
+            // 
+            textBoxModelPh.BorderStyle = BorderStyle.FixedSingle;
+            textBoxModelPh.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxModelPh.Location = new Point(266, 157);
+            textBoxModelPh.Margin = new Padding(4, 5, 4, 5);
+            textBoxModelPh.Name = "textBoxModelPh";
+            textBoxModelPh.Size = new Size(240, 27);
+            textBoxModelPh.TabIndex = 14;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label3.Location = new Point(123, 164);
+            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(118, 20);
+            label3.TabIndex = 16;
+            label3.Text = "Model telefonu:";
             // 
             // AddNewServRecord
             // 
             BackColor = Color.LightGray;
             ClientSize = new Size(1057, 659);
-            Controls.Add(label8);
             Controls.Add(groupBox3);
             Controls.Add(groupBox1);
             Controls.Add(labelMobileSerwisTitle);
@@ -302,25 +303,25 @@
         #endregion
 
 
-        private TextBox textBoxPassword;
-        private TextBox textBox1;
+        private TextBox textBoxImie;
+        private TextBox textBoxNazwisko;
         private Label label2;
         private Button buttonCheck;
         private Label label1;
         private Label labelMobileSerwisTitle;
-        private Label label3;
         private Label label4;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
+        private TextBox textBoxTelefon;
+        private TextBox textBoxBrand;
         private Label label5;
-        private TextBox textBox5;
+        private TextBox textBoxImei;
         private Label label6;
-        private TextBox textBox6;
+        private TextBox textBoxDesc;
         private Label label7;
         private GroupBox groupBox1;
         private GroupBox groupBox3;
-        private TextBox textBox7;
+        private TextBox textBoxFirstPrice;
         private Label label8;
+        private Label label3;
+        private TextBox textBoxModelPh;
     }
 }

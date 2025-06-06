@@ -24,16 +24,19 @@ namespace SerwisTelefonow.DBModels
         [ForeignKey("KodModelu")]
         public PhoneModel Model { get; set; }
 
+        [StringLength(17, MinimumLength = 15)]
+        [RegularExpression(@"^\d{15,17}$", ErrorMessage = "IMEI musi składać się z 15-17 cyfr")]
         [Column("imei")]
-        [StringLength(50)]
         public string? IMEI { get; set; }
 
         [Column("opis")]
         public string? Opis { get; set; }
 
+        [Range(0.01, double.MaxValue, ErrorMessage = "Cena musi być większa od 0.")]
         [Column("cena_wstepna")]
         public decimal? CenaWstepna { get; set; }
 
+        [Range(0.01, double.MaxValue, ErrorMessage = "Cena musi być większa od 0.")]
         [Column("cena_koncowa")]
         public decimal? CenaKoncowa { get; set; }
     

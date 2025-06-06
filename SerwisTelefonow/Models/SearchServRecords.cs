@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SerwisTelefonow.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,10 +13,13 @@ namespace SerwisTelefonow.Models
 {
     public partial class SearchServRecords : Form
     {
-        public SearchServRecords()
+        public SearchServRecords(AppDbContext _context)
         {
             InitializeComponent();
             CenterFlowLayoutPanel();
+
+            var source = _context.ServiceEntry.ToArray();
+            dataGridViewServRecords.DataSource = source;
         }
         private void CenterFlowLayoutPanel()
         {

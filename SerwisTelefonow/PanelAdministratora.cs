@@ -1,14 +1,18 @@
-﻿using SerwisTelefonow.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using SerwisTelefonow.Data;
+using SerwisTelefonow.Models;
 
 namespace SerwisTelefonow
 {
     public partial class PanelAdministratora : Form
     {
+        private readonly AppDbContext context;
         private Form currentForm = null;
-        public PanelAdministratora()
+        public PanelAdministratora(AppDbContext _context)
         {
             InitializeComponent();
-            AddNewServRecord addNewServRecord = new AddNewServRecord();
+            context = _context;
+            AddNewServRecord addNewServRecord = new AddNewServRecord(context);
             OpenFormInPanel(addNewServRecord);
             CenterFlowLayoutPanel();
         }
@@ -45,7 +49,7 @@ namespace SerwisTelefonow
 
         private void dodajWpisSerwisuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddNewServRecord addNewServRecord = new AddNewServRecord();
+            AddNewServRecord addNewServRecord = new AddNewServRecord(context);
             OpenForm(addNewServRecord);
         }
 
@@ -58,7 +62,7 @@ namespace SerwisTelefonow
 
         private void przegladajWpisyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SearchServRecords searchServRecords = new SearchServRecords();
+            SearchServRecords searchServRecords = new SearchServRecords(context);
             OpenForm(searchServRecords);
         }
 
