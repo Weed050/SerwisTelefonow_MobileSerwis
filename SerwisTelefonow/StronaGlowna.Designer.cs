@@ -56,10 +56,10 @@ namespace SerwisTelefonow
             buttonAdminPanel.FlatStyle = FlatStyle.Flat;
             buttonAdminPanel.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
             buttonAdminPanel.ForeColor = Color.White;
-            buttonAdminPanel.Location = new Point(1200, 20);
+            buttonAdminPanel.Location = new Point(1157, 20);
             buttonAdminPanel.Margin = new Padding(4, 5, 4, 5);
             buttonAdminPanel.Name = "buttonAdminPanel";
-            buttonAdminPanel.Size = new Size(180, 40);
+            buttonAdminPanel.Size = new Size(223, 40);
             buttonAdminPanel.TabIndex = 0;
             buttonAdminPanel.Text = "Panel Administratora";
             buttonAdminPanel.UseVisualStyleBackColor = false;
@@ -71,22 +71,24 @@ namespace SerwisTelefonow
             labelMobileSerwisTitle.AutoSize = true;
             labelMobileSerwisTitle.Font = new Font("Segoe UI", 28F, FontStyle.Bold, GraphicsUnit.Point, 238);
             labelMobileSerwisTitle.ForeColor = Color.FromArgb(0, 120, 215);
-            labelMobileSerwisTitle.Location = new Point(120, 30);
+            labelMobileSerwisTitle.Location = new Point(81, 25);
             labelMobileSerwisTitle.Margin = new Padding(4, 0, 4, 20);
             labelMobileSerwisTitle.Name = "labelMobileSerwisTitle";
-            labelMobileSerwisTitle.Size = new Size(290, 51);
+            labelMobileSerwisTitle.Size = new Size(337, 62);
             labelMobileSerwisTitle.TabIndex = 1;
             labelMobileSerwisTitle.Text = "Mobile Serwis";
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label1.ForeColor = Color.FromArgb(64, 64, 64);
-            label1.Location = new Point(30, 100);
+            label1.Location = new Point(24, 107);
             label1.Margin = new Padding(4, 0, 4, 30);
             label1.Name = "label1";
-            label1.Size = new Size(420, 80);
+            label1.RightToLeft = RightToLeft.No;
+            label1.Size = new Size(452, 100);
             label1.TabIndex = 2;
             label1.Text = "W celu sprawdzenia postępu naprawy \r\nzachęcamy do skorzystania z poniższego \r\nformularza. Prosimy podać login i hasło \r\nzamieszczone na karcie serwisowej:";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -106,7 +108,7 @@ namespace SerwisTelefonow
             flowLayoutPanel1.MinimumSize = new Size(500, 400);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Padding = new Padding(20, 25, 20, 25);
-            flowLayoutPanel1.Size = new Size(500, 400);
+            flowLayoutPanel1.Size = new Size(500, 482);
             flowLayoutPanel1.TabIndex = 4;
             flowLayoutPanel1.WrapContents = false;
             // 
@@ -119,7 +121,7 @@ namespace SerwisTelefonow
             panel1.Controls.Add(label2);
             panel1.Controls.Add(textBoxLogin);
             panel1.Controls.Add(buttonCheck);
-            panel1.Location = new Point(30, 210);
+            panel1.Location = new Point(30, 237);
             panel1.Margin = new Padding(10, 0, 10, 0);
             panel1.Name = "panel1";
             panel1.Padding = new Padding(25, 20, 25, 20);
@@ -134,7 +136,7 @@ namespace SerwisTelefonow
             textBoxPassword.Margin = new Padding(4, 5, 4, 5);
             textBoxPassword.Name = "textBoxPassword";
             textBoxPassword.PasswordChar = '•';
-            textBoxPassword.Size = new Size(240, 27);
+            textBoxPassword.Size = new Size(240, 32);
             textBoxPassword.TabIndex = 6;
             // 
             // label3
@@ -144,7 +146,7 @@ namespace SerwisTelefonow
             label3.Location = new Point(50, 90);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(52, 20);
+            label3.Size = new Size(66, 25);
             label3.TabIndex = 5;
             label3.Text = "Hasło:";
             // 
@@ -155,7 +157,7 @@ namespace SerwisTelefonow
             label2.Location = new Point(50, 40);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(51, 20);
+            label2.Size = new Size(64, 25);
             label2.TabIndex = 4;
             label2.Text = "Login:";
             // 
@@ -166,7 +168,7 @@ namespace SerwisTelefonow
             textBoxLogin.Location = new Point(150, 37);
             textBoxLogin.Margin = new Padding(4, 5, 4, 5);
             textBoxLogin.Name = "textBoxLogin";
-            textBoxLogin.Size = new Size(240, 27);
+            textBoxLogin.Size = new Size(240, 32);
             textBoxLogin.TabIndex = 3;
             // 
             // buttonCheck
@@ -189,7 +191,7 @@ namespace SerwisTelefonow
             // 
             // StronaGlowna
             // 
-            AutoScaleDimensions = new SizeF(9F, 21F);
+            AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(240, 245, 250);
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");

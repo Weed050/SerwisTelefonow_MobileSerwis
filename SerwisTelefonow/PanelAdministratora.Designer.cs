@@ -28,18 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PanelAdministratora));
             menuStrip1 = new MenuStrip();
             toolStripMenuItem1 = new ToolStripMenuItem();
             dodajSerwisToolStripMenuItem = new ToolStripMenuItem();
             dodajWpisSerwisuToolStripMenuItem = new ToolStripMenuItem();
             przegladajWpisyToolStripMenuItem = new ToolStripMenuItem();
-            fakturyToolStripMenuItem = new ToolStripMenuItem();
-            wyświetlFakturyToolStripMenuItem = new ToolStripMenuItem();
-            dodajFakturęToolStripMenuItem = new ToolStripMenuItem();
-            stanMagazynuToolStripMenuItem = new ToolStripMenuItem();
-            sprawdźModelToolStripMenuItem = new ToolStripMenuItem();
-            wycenaNaprawyToolStripMenuItem = new ToolStripMenuItem();
             panel1 = new Panel();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -47,7 +40,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, dodajSerwisToolStripMenuItem, fakturyToolStripMenuItem, stanMagazynuToolStripMenuItem, sprawdźModelToolStripMenuItem, wycenaNaprawyToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, dodajSerwisToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(5, 2, 0, 2);
@@ -71,57 +64,16 @@
             // dodajWpisSerwisuToolStripMenuItem
             // 
             dodajWpisSerwisuToolStripMenuItem.Name = "dodajWpisSerwisuToolStripMenuItem";
-            dodajWpisSerwisuToolStripMenuItem.Size = new Size(174, 22);
+            dodajWpisSerwisuToolStripMenuItem.Size = new Size(180, 22);
             dodajWpisSerwisuToolStripMenuItem.Text = "&Dodaj wpis serwisu";
             dodajWpisSerwisuToolStripMenuItem.Click += dodajWpisSerwisuToolStripMenuItem_Click;
             // 
             // przegladajWpisyToolStripMenuItem
             // 
             przegladajWpisyToolStripMenuItem.Name = "przegladajWpisyToolStripMenuItem";
-            przegladajWpisyToolStripMenuItem.Size = new Size(174, 22);
+            przegladajWpisyToolStripMenuItem.Size = new Size(180, 22);
             przegladajWpisyToolStripMenuItem.Text = "P&rzegladaj wpisy";
             przegladajWpisyToolStripMenuItem.Click += przegladajWpisyToolStripMenuItem_Click;
-            // 
-            // fakturyToolStripMenuItem
-            // 
-            fakturyToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { wyświetlFakturyToolStripMenuItem, dodajFakturęToolStripMenuItem });
-            fakturyToolStripMenuItem.Name = "fakturyToolStripMenuItem";
-            fakturyToolStripMenuItem.Size = new Size(58, 20);
-            fakturyToolStripMenuItem.Text = "&Faktury";
-            // 
-            // wyświetlFakturyToolStripMenuItem
-            // 
-            wyświetlFakturyToolStripMenuItem.Name = "wyświetlFakturyToolStripMenuItem";
-            wyświetlFakturyToolStripMenuItem.Size = new Size(161, 22);
-            wyświetlFakturyToolStripMenuItem.Text = "&Wyświetl faktury";
-            wyświetlFakturyToolStripMenuItem.Click += wyświetlFakturyToolStripMenuItem_Click;
-            // 
-            // dodajFakturęToolStripMenuItem
-            // 
-            dodajFakturęToolStripMenuItem.Name = "dodajFakturęToolStripMenuItem";
-            dodajFakturęToolStripMenuItem.Size = new Size(161, 22);
-            dodajFakturęToolStripMenuItem.Text = "&Dodaj fakturę";
-            dodajFakturęToolStripMenuItem.Click += dodajFakturęToolStripMenuItem_Click;
-            // 
-            // stanMagazynuToolStripMenuItem
-            // 
-            stanMagazynuToolStripMenuItem.Name = "stanMagazynuToolStripMenuItem";
-            stanMagazynuToolStripMenuItem.Size = new Size(100, 20);
-            stanMagazynuToolStripMenuItem.Text = "St&an Magazynu";
-            // 
-            // sprawdźModelToolStripMenuItem
-            // 
-            sprawdźModelToolStripMenuItem.Name = "sprawdźModelToolStripMenuItem";
-            sprawdźModelToolStripMenuItem.Size = new Size(100, 20);
-            sprawdźModelToolStripMenuItem.Text = "Sp&rawdź model";
-            sprawdźModelToolStripMenuItem.Click += sprawdźModelToolStripMenuItem_Click;
-            // 
-            // wycenaNaprawyToolStripMenuItem
-            // 
-            wycenaNaprawyToolStripMenuItem.Name = "wycenaNaprawyToolStripMenuItem";
-            wycenaNaprawyToolStripMenuItem.Size = new Size(109, 20);
-            wycenaNaprawyToolStripMenuItem.Text = "Wy&cena naprawy";
-            wycenaNaprawyToolStripMenuItem.Click += wycenaNaprawyToolStripMenuItem_Click;
             // 
             // panel1
             // 
@@ -139,7 +91,6 @@
             ClientSize = new Size(1050, 600);
             Controls.Add(panel1);
             Controls.Add(menuStrip1);
-            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             Margin = new Padding(3, 2, 3, 2);
             MinimumSize = new Size(702, 460);
@@ -161,12 +112,6 @@
         private ToolStripMenuItem dodajSerwisToolStripMenuItem;
         private ToolStripMenuItem dodajWpisSerwisuToolStripMenuItem;
         private ToolStripMenuItem przegladajWpisyToolStripMenuItem;
-        private ToolStripMenuItem fakturyToolStripMenuItem;
-        private ToolStripMenuItem wyświetlFakturyToolStripMenuItem;
-        private ToolStripMenuItem dodajFakturęToolStripMenuItem;
-        private ToolStripMenuItem stanMagazynuToolStripMenuItem;
-        private ToolStripMenuItem sprawdźModelToolStripMenuItem;
-        private ToolStripMenuItem wycenaNaprawyToolStripMenuItem;
         private Panel panel1;
     }
 }

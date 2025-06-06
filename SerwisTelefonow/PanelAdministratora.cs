@@ -1,13 +1,4 @@
 ﻿using SerwisTelefonow.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace SerwisTelefonow
 {
@@ -19,8 +10,21 @@ namespace SerwisTelefonow
             InitializeComponent();
             AddNewServRecord addNewServRecord = new AddNewServRecord();
             OpenFormInPanel(addNewServRecord);
+            CenterFlowLayoutPanel();
         }
+        private void CenterFlowLayoutPanel()
+        {
+            int screenCenterX = this.ClientSize.Width / 2;
+            int screenCenterY = this.ClientSize.Height / 2;
 
+            int panelCenterX = panel1.Width / 2;
+            int panelCenterY = panel1.Height / 2;
+
+            panel1.Location = new Point(
+                screenCenterX - panelCenterX,
+                screenCenterY - panelCenterY
+            );
+        }
         private void OpenForm(Form form)
         {
             if (form != null)
@@ -50,34 +54,13 @@ namespace SerwisTelefonow
             Application.Exit();
         }
 
+  
+
         private void przegladajWpisyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SearchServRecords searchServRecords = new SearchServRecords();
             OpenForm(searchServRecords);
         }
 
-        private void wyświetlFakturyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            showInvoices showInvoices = new showInvoices();
-            OpenForm(showInvoices);
-        }
-
-        private void dodajFakturęToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AddInvoice addInvoice = new AddInvoice();
-            OpenForm(addInvoice);
-        }
-
-        private void sprawdźModelToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CheckModel checkModel = new CheckModel();
-            OpenForm(checkModel);
-        }
-
-        private void wycenaNaprawyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CheckServisPrice checkServisPrice = new CheckServisPrice();
-            OpenForm(checkServisPrice);
-        }
     }
 }

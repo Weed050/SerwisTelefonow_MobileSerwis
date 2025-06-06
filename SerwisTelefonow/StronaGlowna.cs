@@ -1,3 +1,5 @@
+using SerwisTelefonow.Data;
+
 namespace SerwisTelefonow
 {
     public partial class StronaGlowna : Form

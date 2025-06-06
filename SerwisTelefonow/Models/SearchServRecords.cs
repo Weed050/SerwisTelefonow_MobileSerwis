@@ -15,6 +15,20 @@ namespace SerwisTelefonow.Models
         public SearchServRecords()
         {
             InitializeComponent();
+            CenterFlowLayoutPanel();
+        }
+        private void CenterFlowLayoutPanel()
+        {
+            int screenCenterX = this.ClientSize.Width / 2;
+            int screenCenterY = this.ClientSize.Height / 2;
+
+            int panelCenterX = groupBoxServRecords.Width / 2;
+            int panelCenterY = groupBoxServRecords.Height / 2;
+
+            groupBoxServRecords.Location = new Point(
+                screenCenterX - panelCenterX,
+                screenCenterY - panelCenterY
+            );
         }
     }
 }
