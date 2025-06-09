@@ -4,7 +4,6 @@ using SerwisTelefonow;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
-using static System.Formats.Asn1.AsnWriter;
 using SerwisTelefonow.Models;
 
 internal static class Program
@@ -41,7 +40,16 @@ internal static class Program
             .Build();
 
         ServiceProvider = host.Services;
+        using (var scope = host.Services.CreateScope())
+        {
+            var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+            context.Database.Migrate();
+            context.SeedDatabaseFromSqlScriptIfEmpty(); 
+        }
+
+
         Application.Run(ServiceProvider.GetRequiredService<StronaGlowna>());
         //Application.Run(new StronaGlowna());
     }
+
 }

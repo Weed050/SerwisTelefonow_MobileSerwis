@@ -15,6 +15,16 @@ namespace SerwisTelefonow.Data
         public DbSet<PhoneModel> PhoneModel { get; set; }
         public DbSet<ServiceEntry> ServiceEntry { get; set; }
 
+
+        public void SeedDatabaseFromSqlScriptIfEmpty()
+        {
+            if (!this.Clients.Any())
+            {
+                var sql = File.ReadAllText("seeder_script.sql");
+                this.Database.ExecuteSqlRaw(sql);
+            }
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

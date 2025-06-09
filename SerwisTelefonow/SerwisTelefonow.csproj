@@ -16,6 +16,13 @@
     </Compile>
   </ItemGroup>
 
+<ItemGroup>
+  <None Update="seeder_script.sql">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </None>
+</ItemGroup>
+
+
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
