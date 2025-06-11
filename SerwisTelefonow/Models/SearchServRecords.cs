@@ -18,38 +18,326 @@ namespace SerwisTelefonow.Models
         public SearchServRecords(AppDbContext _context)
         {
             InitializeComponent();
-            CenterFlowLayoutPanel();
             appDbContext = _context;
-            wczytajDane();
-        }
-        private void CenterFlowLayoutPanel()
-        {
-            int screenCenterX = this.ClientSize.Width / 2;
-            int panelCenterX = groupBoxServRecords.Width / 2;
-            int panelCenterX2 = dataGridViewClients.Width / 2;
-
-            groupBoxServRecords.Location = new Point(
-                screenCenterX - panelCenterX,
-                groupBoxServRecords.Location.Y
-            );
-            dataGridViewClients.Location = new Point(
-                screenCenterX - panelCenterX2,
-                dataGridViewClients.Location.Y
-            );
+            LoadServEntry();
+            LoadClient();
+            LoadPhoneModels();
+            AdjustTablesWidth();
         }
 
-        private void wczytajDane()
+        private void AdjustTablesWidth()
         {
-            var source = appDbContext.ServiceEntry.ToArray();
-            dataGridViewServRecords.DataSource = source;
-            var sourceClients = appDbContext.Clients.ToArray();
+            dataGridViewServRecords.AutoResizeColumns();
+            dataGridViewClients.AutoResizeColumns();
+            dataGridViewPhoneModel.AutoResizeColumns();
+
+            int servRecordsOptimalWidth = GetOptimalTableWidth(dataGridViewServRecords);
+            int clientsOptimalWidth = GetOptimalTableWidth(dataGridViewClients);
+            int phoneModelOptimalWidth = GetOptimalTableWidth(dataGridViewPhoneModel);
+
+            dataGridViewServRecords.Width = servRecordsOptimalWidth;
+            dataGridViewClients.Width = clientsOptimalWidth;
+            dataGridViewPhoneModel.Width = phoneModelOptimalWidth;
+
+
+            dataGridViewClients.Left = (groupBox2.ClientSize.Width - clientsOptimalWidth) / 2;
+            dataGridViewPhoneModel.Left = (groupBox3.ClientSize.Width - phoneModelOptimalWidth) / 2;
+
+            groupBox1.Left = (this.ClientSize.Width - groupBox1.Width) / 2;
+
+            int formWidth = this.ClientSize.Width;
+            int width2 = groupBox2.Width;
+            int width3 = groupBox3.Width;
+            int gap = (formWidth - (width2 + width3)) / 3;
+
+
+            groupBox3.Left = gap;
+            groupBox2.Left = gap * 2 + width3;
+
+            dataGridViewServRecords.Refresh();
+            dataGridViewClients.Refresh();
+            dataGridViewPhoneModel.Refresh();
+        }
+
+        private int GetOptimalTableWidth(DataGridView dataGridView)
+        {
+            int totalWidth = dataGridView.RowHeadersVisible ? dataGridView.RowHeadersWidth : 0;
+            foreach (DataGridViewColumn col in dataGridView.Columns)
+            {
+                if (!col.Visible) continue;
+                totalWidth += col.Width;
+            }
+            totalWidth += 30;
+            return totalWidth;
+        }
+
+        private void LoadServEntry()
+        {
+            var sourceServEntry = appDbContext.ServiceEntry.ToList();
+            dataGridViewServRecords.DataSource = sourceServEntry;
+
+
+            if (dataGridViewServRecords.Columns.Contains("Model"))
+            {
+                dataGridViewServRecords.Columns["Model"].Visible = false;
+            }
+            if (dataGridViewServRecords.Columns.Contains("Client"))
+            {
+                dataGridViewServRecords.Columns["Client"].Visible = false;
+            }
+
+            if (!dataGridViewServRecords.Columns.Contains("Klient"))
+            {
+                var comboColumn = new DataGridViewComboBoxColumn();
+                comboColumn.Name = "Klient";
+                comboColumn.DataPropertyName = "KlientId";
+                comboColumn.HeaderText = "Klient";
+                comboColumn.DataSource = appDbContext.Clients
+                    .Select(c => new { c.Id, FullName = c.Imie + " " + c.Nazwisko })
+                    .ToList();
+                comboColumn.DisplayMember = "FullName";
+                comboColumn.ValueMember = "Id";
+
+                dataGridViewServRecords.Columns.Add(comboColumn);
+            }
+            else
+            {
+                var combo = dataGridViewServRecords.Columns["Klient"] as DataGridViewComboBoxColumn;
+                if (combo != null)
+                {
+                    combo.DataSource = appDbContext.Clients
+                        .Select(c => new { c.Id, FullName = c.Imie + " " + c.Nazwisko })
+                        .ToList();
+                }
+            }
+
+        }
+
+        private void LoadClient()
+        {
+            var sourceClients = appDbContext.Clients.ToList();
             dataGridViewClients.DataSource = sourceClients;
+            if (dataGridViewClients.Columns.Contains("WpisySerwisowe"))
+            {
+                dataGridViewClients.Columns["WpisySerwisowe"].Visible = false;
+            }
         }
 
-        private void buttonRefresh_Click(object sender, EventArgs e)
+        private void LoadPhoneModels()
         {
-            wczytajDane();
-            MessageBox.Show("Odświerzono dane.");
+            var sourcePhoneModels = appDbContext.PhoneModel.ToList();
+            dataGridViewPhoneModel.DataSource = sourcePhoneModels;
+            if (dataGridViewPhoneModel.Columns.Contains("WpisySerwisowe"))
+            {
+                dataGridViewPhoneModel.Columns["WpisySerwisowe"].Visible = false;
+            }
+        }
+
+        private void buttonSaveServEntry_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dataGridViewServRecords.Rows)
+                {
+                    if (row.IsNewRow) continue;
+
+                    int recordId = Convert.ToInt32(row.Cells["Id"].Value);
+                    var record = appDbContext.ServiceEntry.FirstOrDefault(x => x.Id == recordId);
+
+                    if (record != null)
+                    {
+                        record.Opis = row.Cells["Opis"].Value.ToString();
+                        record.CenaWstepna = Convert.ToDecimal(row.Cells["CenaWstepna"].Value);
+                    }
+                }
+
+                appDbContext.SaveChanges();
+                MessageBox.Show("Zmiany zostały zapisane!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd podczas zapisywania danych: {ex.Message}");
+            }
+        }
+
+        private void buttonSaveClientData_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dataGridViewClients.Rows)
+                {
+                    if (row.IsNewRow) continue;
+
+                    int clientId = Convert.ToInt32(row.Cells["Id"].Value);
+                    var client = appDbContext.Clients.FirstOrDefault(x => x.Id == clientId);
+
+                    if (client != null)
+                    {
+                        client.Imie = row.Cells["Imie"].Value.ToString();
+                        client.Nazwisko = row.Cells["Nazwisko"].Value.ToString();
+                        client.Telefon = row.Cells["Telefon"].Value?.ToString();
+                    }
+                }
+
+                appDbContext.SaveChanges();
+                MessageBox.Show("Zmiany w danych klientów zostały zapisane!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd podczas zapisywania: {ex.Message}");
+            }
+            RefreshData();
+        }
+
+        private void buttonDeleteClientRow_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dataGridViewClients.CurrentRow == null)
+                {
+                    MessageBox.Show("Wybierz klienta do usunięcia!");
+                    return;
+                }
+
+                int clientId = Convert.ToInt32(dataGridViewClients.CurrentRow.Cells["Id"].Value);
+                var client = appDbContext.Clients.FirstOrDefault(x => x.Id == clientId);
+
+                if (client != null)
+                {
+                    DialogResult result = MessageBox.Show(
+                        $"Czy na pewno chcesz usunąć klienta {client.Imie} {client.Nazwisko}?",
+                        "Potwierdzenie usunięcia",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+                    );
+                    if (result == DialogResult.Yes)
+                    {
+                        appDbContext.Clients.Remove(client);
+                        appDbContext.SaveChanges();
+                        LoadClient();
+                        MessageBox.Show("Klient został usunięty!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd podczas usuwania klienta: {ex.Message}");
+            }
+            RefreshData();
+        }
+
+        private void buttonDeleteServEntrRow_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dataGridViewServRecords.CurrentRow == null)
+                {
+                    MessageBox.Show("Wybierz rekord do usunięcia!");
+                    return;
+                }
+
+                int recordId = Convert.ToInt32(dataGridViewServRecords.CurrentRow.Cells["Id"].Value);
+                var record = appDbContext.ServiceEntry.FirstOrDefault(x => x.Id == recordId);
+
+                if (record != null)
+                {
+                    DialogResult result = MessageBox.Show(
+                        $"Czy na pewno chcesz usunąć rekord ID: {recordId}?",
+                        "Potwierdzenie usunięcia",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+                    );
+
+                    if (result == DialogResult.Yes)
+                    {
+                        appDbContext.ServiceEntry.Remove(record);
+                        appDbContext.SaveChanges();
+                        LoadServEntry();
+                        MessageBox.Show("Rekord został usunięty!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd podczas usuwania: {ex.Message}");
+            }
+            RefreshData();
+        }
+
+        private void buttonDeletePhoneModel_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                if (dataGridViewPhoneModel.CurrentRow == null)
+                {
+                    MessageBox.Show("Wybierz model do usunięcia!");
+                    return;
+                }
+
+                string kodModelu = dataGridViewPhoneModel.CurrentRow.Cells["KodModelu"].Value?.ToString();
+                var model = appDbContext.PhoneModel.FirstOrDefault(x => x.KodModelu == kodModelu);
+
+                if (model != null)
+                {
+                    DialogResult result = MessageBox.Show(
+                        $"Czy na pewno chcesz usunąć model {model.Marka} {model.PelnaNazwa}?",
+                        "Potwierdzenie usunięcia",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        appDbContext.PhoneModel.Remove(model);
+                        appDbContext.SaveChanges();
+                        LoadPhoneModels();
+                        MessageBox.Show("Model został usunięty!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd podczas usuwania modelu: {ex.Message}");
+            }
+            RefreshData();
+        }
+
+        private void buttonSaveModel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dataGridViewPhoneModel.Rows)
+                {
+                    if (row.IsNewRow) continue;
+
+                    // Kluczem w PhoneModel jest KodModelu – zakładamy, że każdy rekord ma unikalny kod
+                    string kodModelu = row.Cells["KodModelu"].Value?.ToString();
+                    var model = appDbContext.PhoneModel.FirstOrDefault(x => x.KodModelu == kodModelu);
+
+                    if (model != null)
+                    {
+                        model.Marka = row.Cells["Marka"].Value?.ToString();
+                        model.PelnaNazwa = row.Cells["PelnaNazwa"].Value?.ToString();
+                    }
+                }
+                appDbContext.SaveChanges();
+                MessageBox.Show("Zmiany w danych modeli zostały zapisane!");
+                RefreshData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd podczas zapisywania modeli: {ex.Message}");
+            }
+        }
+        private void RefreshData()
+        {
+            LoadServEntry();
+            LoadClient();
+            LoadPhoneModels();
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            RefreshData();
         }
     }
 }

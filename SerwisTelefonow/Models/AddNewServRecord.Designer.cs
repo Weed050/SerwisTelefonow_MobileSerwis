@@ -49,10 +49,17 @@
             textBoxFirstPrice = new TextBox();
             textBoxModelCode = new TextBox();
             groupBox3 = new GroupBox();
-            groupBox2 = new GroupBox();
+            groupBox4 = new GroupBox();
+            textBoxFullName = new TextBox();
+            label17 = new Label();
+            textBoxBrand2 = new TextBox();
+            label14 = new Label();
+            textBoxModelCode2 = new TextBox();
+            label5 = new Label();
             label13 = new Label();
-            textBoxSearch = new TextBox();
             buttonAddNewModel = new Button();
+            groupBox2 = new GroupBox();
+            textBoxSearch = new TextBox();
             label3 = new Label();
             label9 = new Label();
             dataGridViewModels = new DataGridView();
@@ -64,6 +71,7 @@
             dataGridViewClients = new DataGridView();
             groupBox1.SuspendLayout();
             groupBox3.SuspendLayout();
+            groupBox4.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewModels).BeginInit();
             groupBoxClientData.SuspendLayout();
@@ -230,7 +238,7 @@
             groupBox1.Controls.Add(textBoxTelefon);
             groupBox1.Controls.Add(textBoxModelCode);
             groupBox1.Controls.Add(label4);
-            groupBox1.Location = new Point(52, 147);
+            groupBox1.Location = new Point(47, 163);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(629, 564);
             groupBox1.TabIndex = 23;
@@ -320,48 +328,99 @@
             // groupBox3
             // 
             groupBox3.Anchor = AnchorStyles.None;
+            groupBox3.Controls.Add(groupBox4);
             groupBox3.Controls.Add(groupBox2);
             groupBox3.Controls.Add(label9);
             groupBox3.Controls.Add(dataGridViewModels);
-            groupBox3.Location = new Point(720, 147);
+            groupBox3.Location = new Point(720, 163);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(634, 582);
+            groupBox3.Size = new Size(634, 734);
             groupBox3.TabIndex = 24;
             groupBox3.TabStop = false;
             // 
-            // groupBox2
+            // groupBox4
             // 
-            groupBox2.Controls.Add(label13);
-            groupBox2.Controls.Add(textBoxSearch);
-            groupBox2.Controls.Add(buttonAddNewModel);
-            groupBox2.Controls.Add(label3);
-            groupBox2.Location = new Point(84, 75);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(401, 126);
-            groupBox2.TabIndex = 5;
-            groupBox2.TabStop = false;
+            groupBox4.Controls.Add(textBoxFullName);
+            groupBox4.Controls.Add(label17);
+            groupBox4.Controls.Add(textBoxBrand2);
+            groupBox4.Controls.Add(label14);
+            groupBox4.Controls.Add(textBoxModelCode2);
+            groupBox4.Controls.Add(label5);
+            groupBox4.Controls.Add(label13);
+            groupBox4.Controls.Add(buttonAddNewModel);
+            groupBox4.Location = new Point(99, 485);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new Size(401, 230);
+            groupBox4.TabIndex = 10;
+            groupBox4.TabStop = false;
+            // 
+            // textBoxFullName
+            // 
+            textBoxFullName.Location = new Point(197, 108);
+            textBoxFullName.Name = "textBoxFullName";
+            textBoxFullName.Size = new Size(158, 27);
+            textBoxFullName.TabIndex = 21;
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label17.Location = new Point(52, 107);
+            label17.Margin = new Padding(4, 0, 4, 0);
+            label17.Name = "label17";
+            label17.Size = new Size(123, 25);
+            label17.TabIndex = 20;
+            label17.Text = "Pełna nazwa:";
+            // 
+            // textBoxBrand2
+            // 
+            textBoxBrand2.Location = new Point(197, 71);
+            textBoxBrand2.Name = "textBoxBrand2";
+            textBoxBrand2.Size = new Size(158, 27);
+            textBoxBrand2.TabIndex = 19;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label14.Location = new Point(103, 73);
+            label14.Margin = new Padding(4, 0, 4, 0);
+            label14.Name = "label14";
+            label14.Size = new Size(72, 25);
+            label14.TabIndex = 18;
+            label14.Text = "Marka:";
+            // 
+            // textBoxModelCode2
+            // 
+            textBoxModelCode2.Location = new Point(197, 30);
+            textBoxModelCode2.Name = "textBoxModelCode2";
+            textBoxModelCode2.Size = new Size(158, 27);
+            textBoxModelCode2.TabIndex = 17;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label5.Location = new Point(59, 32);
+            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(121, 25);
+            label5.TabIndex = 16;
+            label5.Text = "Kod modelu:";
             // 
             // label13
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label13.Location = new Point(71, 66);
+            label13.Location = new Point(19, 167);
             label13.Name = "label13";
-            label13.Size = new Size(117, 28);
+            label13.Size = new Size(156, 28);
             label13.TabIndex = 6;
-            label13.Text = "Nie istnieje?";
-            // 
-            // textBoxSearch
-            // 
-            textBoxSearch.Location = new Point(258, 26);
-            textBoxSearch.Name = "textBoxSearch";
-            textBoxSearch.Size = new Size(125, 27);
-            textBoxSearch.TabIndex = 9;
-            textBoxSearch.TextChanged += textBoxSearch_TextChanged;
+            label13.Text = "Nie ma w tabeli?";
             // 
             // buttonAddNewModel
             // 
-            buttonAddNewModel.Location = new Point(194, 69);
+            buttonAddNewModel.Location = new Point(197, 170);
             buttonAddNewModel.Name = "buttonAddNewModel";
             buttonAddNewModel.Size = new Size(158, 29);
             buttonAddNewModel.TabIndex = 11;
@@ -369,11 +428,29 @@
             buttonAddNewModel.UseVisualStyleBackColor = true;
             buttonAddNewModel.Click += buttonAddNewModel_Click;
             // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(textBoxSearch);
+            groupBox2.Controls.Add(label3);
+            groupBox2.Location = new Point(84, 75);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(401, 70);
+            groupBox2.TabIndex = 5;
+            groupBox2.TabStop = false;
+            // 
+            // textBoxSearch
+            // 
+            textBoxSearch.Location = new Point(250, 22);
+            textBoxSearch.Name = "textBoxSearch";
+            textBoxSearch.Size = new Size(125, 27);
+            textBoxSearch.TabIndex = 9;
+            textBoxSearch.TextChanged += textBoxSearch_TextChanged;
+            // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label3.Location = new Point(13, 22);
+            label3.Location = new Point(5, 18);
             label3.Name = "label3";
             label3.Size = new Size(239, 28);
             label3.TabIndex = 3;
@@ -385,15 +462,15 @@
             label9.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label9.Location = new Point(21, 35);
             label9.Name = "label9";
-            label9.Size = new Size(404, 37);
+            label9.Size = new Size(460, 37);
             label9.TabIndex = 1;
-            label9.Text = "Wykaz kodów modeli telefonów:";
+            label9.Text = "Wybierz kod modeli telefonów z listy:";
             // 
             // dataGridViewModels
             // 
             dataGridViewModels.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridViewModels.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewModels.Location = new Point(97, 241);
+            dataGridViewModels.Location = new Point(99, 162);
             dataGridViewModels.MultiSelect = false;
             dataGridViewModels.Name = "dataGridViewModels";
             dataGridViewModels.RowHeadersWidth = 51;
@@ -407,7 +484,7 @@
             groupBoxClientData.Controls.Add(groupBoxWyszukiwanie);
             groupBoxClientData.Controls.Add(label16);
             groupBoxClientData.Controls.Add(dataGridViewClients);
-            groupBoxClientData.Location = new Point(1434, 147);
+            groupBoxClientData.Location = new Point(1435, 163);
             groupBoxClientData.Name = "groupBoxClientData";
             groupBoxClientData.Size = new Size(634, 582);
             groupBoxClientData.TabIndex = 25;
@@ -447,13 +524,13 @@
             label16.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label16.Location = new Point(21, 35);
             label16.Name = "label16";
-            label16.Size = new Size(185, 37);
+            label16.Size = new Size(278, 37);
             label16.TabIndex = 1;
-            label16.Text = "Lista klientów:";
+            label16.Text = "Wybierz klienta z listy:";
             // 
             // dataGridViewClients
             // 
-            dataGridViewClients.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridViewClients.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewClients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewClients.Location = new Point(32, 231);
             dataGridViewClients.MultiSelect = false;
@@ -466,7 +543,7 @@
             // AddNewServRecord
             // 
             BackColor = Color.LightGray;
-            ClientSize = new Size(2113, 741);
+            ClientSize = new Size(2113, 935);
             Controls.Add(groupBoxClientData);
             Controls.Add(groupBox3);
             Controls.Add(groupBox1);
@@ -476,6 +553,8 @@
             groupBox1.PerformLayout();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewModels).EndInit();
@@ -500,7 +579,6 @@
         private Label label4;
         private TextBox textBoxTelefon;
         private TextBox textBoxBrand;
-        private Label label5;
         private TextBox textBoxImei;
         private Label label6;
         private TextBox textBoxDesc;
@@ -527,5 +605,12 @@
         private Label label16;
         private DataGridView dataGridViewClients;
         private Button buttonClearForm;
+        private GroupBox groupBox4;
+        private Label label5;
+        private TextBox textBoxBrand2;
+        private Label label14;
+        private TextBox textBoxModelCode2;
+        private TextBox textBoxFullName;
+        private Label label17;
     }
 }

@@ -35,8 +35,6 @@ namespace SerwisTelefonow.Models
             AdjustModelsTableWidth();
             AdjustClientTableWidth();
 
-            //foreach (var box in textBoxes)
-            //    box.Text = String.Empty;
         }
         private void AlignBoxesInForm()
         {
@@ -81,6 +79,7 @@ namespace SerwisTelefonow.Models
             }
 
             var source = query
+                .OrderByDescending(x => x.Id) // Sortowanie od najnowszego
                 .Select(x => new
                 {
                     id = x.Id,
@@ -92,6 +91,7 @@ namespace SerwisTelefonow.Models
 
             dataGridViewClients.DataSource = source;
         }
+
 
         public void LoadModels(string filter = "")
         {
@@ -120,27 +120,24 @@ namespace SerwisTelefonow.Models
         }
         private void AdjustClientTableWidth()
         {
-            dataGridViewClients.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            dataGridViewClients.AutoResizeColumns();
-
             int totalWidth = dataGridViewClients.RowHeadersVisible ? dataGridViewClients.RowHeadersWidth : 0;
 
             foreach (DataGridViewColumn col in dataGridViewClients.Columns)
             {
-                if (!col.Visible) continue;
                 totalWidth += col.Width;
             }
 
-            totalWidth += 30;
-            int padding = 0;
+            int padding = 20;
 
             dataGridViewClients.Width = totalWidth;
             groupBoxClientData.Width = dataGridViewClients.Width + (2 * padding);
 
-            dataGridViewClients.Left = (groupBoxClientData.Width - dataGridViewClients.Width) / 2;
+            // Wyśrodkowanie tabeli w grupie
+            dataGridViewClients.Left = (groupBoxClientData.ClientSize.Width - dataGridViewClients.Width) / 2;
 
             dataGridViewClients.Refresh();
         }
+
 
         private void AdjustModelsTableWidth()
         {
@@ -287,7 +284,44 @@ namespace SerwisTelefonow.Models
 
         private void buttonAddNewModel_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(textBoxModelCode2.Text) ||
+                    string.IsNullOrWhiteSpace(textBoxBrand2.Text) ||
+                    string.IsNullOrWhiteSpace(textBoxFullName.Text))
+                {
+                    MessageBox.Show("Wszystkie pola muszą być wypełnione!");
+                    return;
+                }
 
+                if (context.PhoneModel.Any(pm => pm.KodModelu == textBoxModelCode2.Text))
+                {
+                    MessageBox.Show("Model o podanym kodzie już istnieje!");
+                    return;
+                }
+
+                var newModel = new PhoneModel
+                {
+                    KodModelu = textBoxModelCode2.Text,
+                    Marka = textBoxBrand2.Text,
+                    PelnaNazwa = textBoxFullName.Text
+                };
+
+                context.PhoneModel.Add(newModel);
+                context.SaveChanges();
+
+                LoadModels();
+
+                MessageBox.Show("Nowy model telefonu został dodany!");
+
+                textBoxModelCode2.Text = "";
+                textBoxBrand2.Text = "";
+                textBoxFullName.Text = "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd podczas dodawania modelu: {ex.Message}");
+            }
         }
     }
 }
