@@ -11,60 +11,161 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SerwisTelefonow.Models
 {
     public partial class AddNewServRecord : Form
     {
+        private System.Windows.Forms.TextBox[] textBoxes;
         private readonly AppDbContext context;
         public AddNewServRecord(AppDbContext _context)
         {
             InitializeComponent();
             context = _context;
-            LoadArrayBox();
+            textBoxes = new System.Windows.Forms.TextBox[] { textBoxImie, textBoxNazwisko, textBoxTelefon, textBoxModelCode, textBoxDesc, textBoxFirstPrice, textBoxImei };
+
+
+            LoadClients();
+            LoadModels();
+
+
             AlignBoxesInForm();
-            AdjustGroupBoxWidthData();
+            AdjustModelsTableWidth();
+            AdjustClientTableWidth();
+
+            //foreach (var box in textBoxes)
+            //    box.Text = String.Empty;
         }
+        private void AlignBoxesInForm()
+        {
+            int totalWidth = this.ClientSize.Width;
+
+            int box1Width = groupBox1.Width;
+            int boxClientDataWidth = groupBoxClientData.Width;
+            int box3Width = groupBox3.Width;
+
+            int spacing = (totalWidth - (box1Width + boxClientDataWidth + box3Width)) / 4;
+
+            groupBox1.Location = new Point(spacing + 50, groupBox1.Location.Y);
+            groupBoxClientData.Location = new Point(groupBox3.Right + spacing, groupBoxClientData.Location.Y);
+            groupBox3.Location = new Point(groupBox1.Right + spacing, groupBox3.Location.Y);
+        }
+
+
         public void LoadArrayBox()
         {
             var source = context.PhoneModel
-                .Select(x => new {  
+                .Select(x => new
+                {
                     kod_modelu = x.KodModelu,
                     marka = x.Marka,
                     pelna_nazwa = x.PelnaNazwa,
                 }).ToArray();
-                
+
             dataGridViewModels.DataSource = source;
         }
-        private void AdjustGroupBoxWidthData()
+        public void LoadClients(string filter = "")
         {
-            dataGridViewModels.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            IQueryable<Clients> query = context.Clients;
+
+            if (!string.IsNullOrWhiteSpace(filter))
+            {
+                string lowerFilter = filter.ToLower();
+                query = query.Where(x =>
+                    x.Imie.ToLower().Contains(lowerFilter) ||
+                    x.Nazwisko.ToLower().Contains(lowerFilter) ||
+                    (x.Telefon != null && x.Telefon.ToLower().Contains(lowerFilter))
+                );
+            }
+
+            var source = query
+                .Select(x => new
+                {
+                    id = x.Id,
+                    imie = x.Imie,
+                    nazwisko = x.Nazwisko,
+                    telefon = x.Telefon
+                })
+                .ToArray();
+
+            dataGridViewClients.DataSource = source;
+        }
+
+        public void LoadModels(string filter = "")
+        {
+            IQueryable<PhoneModel> query = context.PhoneModel;
+
+            if (!string.IsNullOrWhiteSpace(filter))
+            {
+                string lowerFilter = filter.ToLower();
+                query = query.Where(x =>
+                    x.KodModelu.ToLower().Contains(lowerFilter) ||
+                    x.Marka.ToLower().Contains(lowerFilter) ||
+                    x.PelnaNazwa.ToLower().Contains(lowerFilter)
+                );
+            }
+
+            var source = query
+                .Select(x => new
+                {
+                    kod_modelu = x.KodModelu,
+                    marka = x.Marka,
+                    pelna_nazwa = x.PelnaNazwa,
+                })
+                .ToArray();
+
+            dataGridViewModels.DataSource = source;
+        }
+        private void AdjustClientTableWidth()
+        {
+            dataGridViewClients.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dataGridViewClients.AutoResizeColumns();
+
+            int totalWidth = dataGridViewClients.RowHeadersVisible ? dataGridViewClients.RowHeadersWidth : 0;
+
+            foreach (DataGridViewColumn col in dataGridViewClients.Columns)
+            {
+                if (!col.Visible) continue;
+                totalWidth += col.Width;
+            }
+
+            totalWidth += 30;
+            int padding = 0;
+
+            dataGridViewClients.Width = totalWidth;
+            groupBoxClientData.Width = dataGridViewClients.Width + (2 * padding);
+
+            dataGridViewClients.Left = (groupBoxClientData.Width - dataGridViewClients.Width) / 2;
+
+            dataGridViewClients.Refresh();
+        }
+
+        private void AdjustModelsTableWidth()
+        {
+            dataGridViewModels.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dataGridViewModels.AutoResizeColumns();
 
             int totalWidth = dataGridViewModels.RowHeadersVisible ? dataGridViewModels.RowHeadersWidth : 0;
 
             foreach (DataGridViewColumn col in dataGridViewModels.Columns)
             {
+                if (!col.Visible) continue;
                 totalWidth += col.Width;
             }
+            totalWidth += 30;
+
+            int padding = 40;
+
             dataGridViewModels.Width = totalWidth;
-            groupBox3.Width = dataGridViewModels.Width;
+            groupBox3.Width = dataGridViewModels.Width + (2 * padding);
+
+            dataGridViewModels.Left = (groupBox3.Width - dataGridViewModels.Width) / 2;
+
+            dataGridViewModels.Refresh();
+            this.PerformLayout();
         }
-
-        private void AlignBoxesInForm()
-        {
-            int totalWidth = this.ClientSize.Width;
-            int box1Width = groupBox1.Width;
-            int box3Width = groupBox3.Width;
-
-            int spacing = (totalWidth - box1Width - box3Width) / 3;
-
-            // Pozycje: odstęp | box1 | odstęp | box3 | odstęp
-            groupBox1.Location = new Point(spacing, groupBox1.Location.Y);
-            groupBox3.Location = new Point(spacing * 2 + box1Width, groupBox3.Location.Y);
-        }
-
 
         private void buttonCheck_Click(object sender, EventArgs e)
         {
@@ -100,7 +201,6 @@ namespace SerwisTelefonow.Models
                         context.Clients.Add(client);
                         context.SaveChanges();  // id klienta do reszty
 
-                        // Tworzenie i zapis wpisu serwisowego
                         var serviceEntry = new ServiceEntry
                         {
                             IMEI = textBoxImei.Text,
@@ -145,4 +245,49 @@ namespace SerwisTelefonow.Models
             return context.PhoneModel
                 .FirstOrDefault(pm => pm.KodModelu == kodModelu);
         }
-    } }
+
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            LoadModels(textBoxSearch.Text);
+        }
+
+        private void dataGridViewModels_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridViewModels.CurrentRow != null &&
+            dataGridViewModels.CurrentRow.Cells["kod_modelu"].Value != null)
+            {
+                textBoxModelCode.Text = dataGridViewModels.CurrentRow.Cells["kod_modelu"].Value.ToString();
+            }
+        }
+
+        private void textBoxKlientInput_TextChanged(object sender, EventArgs e)
+        {
+            LoadClients(textBoxKlientInput.Text);
+        }
+
+        private void dataGridViewClients_SelectionChanged(object sender, EventArgs e)
+        {
+
+            if (dataGridViewClients.CurrentRow != null &&
+                dataGridViewClients.CurrentRow.Cells["imie"].Value != null &&
+                dataGridViewClients.CurrentRow.Cells["nazwisko"].Value != null &&
+                dataGridViewClients.CurrentRow.Cells["telefon"].Value != null)
+            {
+                textBoxImie.Text = dataGridViewClients.CurrentRow.Cells["imie"].Value.ToString();
+                textBoxNazwisko.Text = dataGridViewClients.CurrentRow.Cells["nazwisko"].Value.ToString();
+                textBoxTelefon.Text = dataGridViewClients.CurrentRow.Cells["telefon"].Value.ToString();
+            }
+        }
+
+        private void buttonClearForm_Click(object sender, EventArgs e)
+        {
+            foreach (var text in textBoxes)
+                text.Text = string.Empty;
+        }
+
+        private void buttonAddNewModel_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+}

@@ -30,11 +30,16 @@ namespace SerwisTelefonow
             {
                 var serwis = _context.ServiceEntry.Where(p => p.Id == result && p.CenaWstepna != null && p.CenaKoncowa == null);
                 if (serwis.Any())
-                    MessageBox.Show($"Jeszcze serwis siê nie zakoñczy³. Telefon jest jeszcze w naprawie.","Przykro nam.");
+                    MessageBox.Show($"Jeszcze serwis siê nie zakoñczy³. Telefon jest jeszcze w naprawie.", "Przykro nam.");
                 else
                     MessageBox.Show($"Serwis zosta³ ukoñczony. Telefon jest do odebrania.", "Zapraszamy.");
                 textBoxLogin.Text = "";
             }
+        }
+
+        private void StronaGlowna_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

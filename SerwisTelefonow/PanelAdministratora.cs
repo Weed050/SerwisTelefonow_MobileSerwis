@@ -16,25 +16,6 @@ namespace SerwisTelefonow
             AddNewServRecord addNewServRecord = new AddNewServRecord(context);
             OpenFormInPanel(addNewServRecord);
             CenterFlowLayoutPanel();
-
-            //var client = new Clients()
-            //{
-            //    Imie = "Bartek",
-            //    Nazwisko = "Marek",
-            //    Telefon = "123123456"
-            //};
-            //context.Clients.Add(client);
-            //context.SaveChanges();
-    
-            //var clinet7 = context.Clients.Where(x => x.Imie == "Kondrat").Single() ;
-            //context.Clients.Remove(clinet7);
-            //context.SaveChanges();
-
-            //var client1 = context.Clients.Where(x => x.Id == 1).Single();
-            //client1.Telefon = "321321321";
-            //client1.Imie = "Norbert";
-            //client1.Nazwisko = "Kos";
-            //context.SaveChanges();
         }
         private void CenterFlowLayoutPanel()
         {
@@ -73,12 +54,7 @@ namespace SerwisTelefonow
             OpenForm(addNewServRecord);
         }
 
-        private void PanelAdministratora_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
-        }
 
-  
 
         private void przegladajWpisyToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -86,5 +62,16 @@ namespace SerwisTelefonow
             OpenForm(searchServRecords);
         }
 
+        private void wylogujSięToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StronaGlowna stronaGlowna = new StronaGlowna(context);
+            stronaGlowna.Show();
+            this.Hide();
+        }
+
+        private void PanelAdministratora_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

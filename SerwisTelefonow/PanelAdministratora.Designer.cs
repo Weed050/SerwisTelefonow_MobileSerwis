@@ -33,6 +33,7 @@
             dodajSerwisToolStripMenuItem = new ToolStripMenuItem();
             dodajWpisSerwisuToolStripMenuItem = new ToolStripMenuItem();
             przegladajWpisyToolStripMenuItem = new ToolStripMenuItem();
+            wylogujSięToolStripMenuItem = new ToolStripMenuItem();
             panel1 = new Panel();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -40,60 +41,67 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, dodajSerwisToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, dodajSerwisToolStripMenuItem, wylogujSięToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(5, 2, 0, 2);
+            menuStrip1.Padding = new Padding(6, 3, 0, 3);
             menuStrip1.RenderMode = ToolStripRenderMode.Professional;
-            menuStrip1.Size = new Size(1050, 24);
+            menuStrip1.Size = new Size(1200, 30);
             menuStrip1.TabIndex = 2;
             menuStrip1.Text = "menuStrip1";
             // 
             // toolStripMenuItem1
             // 
             toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(12, 20);
+            toolStripMenuItem1.Size = new Size(14, 24);
             // 
             // dodajSerwisToolStripMenuItem
             // 
             dodajSerwisToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dodajWpisSerwisuToolStripMenuItem, przegladajWpisyToolStripMenuItem });
             dodajSerwisToolStripMenuItem.Name = "dodajSerwisToolStripMenuItem";
-            dodajSerwisToolStripMenuItem.Size = new Size(58, 20);
+            dodajSerwisToolStripMenuItem.Size = new Size(72, 24);
             dodajSerwisToolStripMenuItem.Text = "&Serwisy";
             // 
             // dodajWpisSerwisuToolStripMenuItem
             // 
             dodajWpisSerwisuToolStripMenuItem.Name = "dodajWpisSerwisuToolStripMenuItem";
-            dodajWpisSerwisuToolStripMenuItem.Size = new Size(180, 22);
+            dodajWpisSerwisuToolStripMenuItem.Size = new Size(219, 26);
             dodajWpisSerwisuToolStripMenuItem.Text = "&Dodaj wpis serwisu";
             dodajWpisSerwisuToolStripMenuItem.Click += dodajWpisSerwisuToolStripMenuItem_Click;
             // 
             // przegladajWpisyToolStripMenuItem
             // 
             przegladajWpisyToolStripMenuItem.Name = "przegladajWpisyToolStripMenuItem";
-            przegladajWpisyToolStripMenuItem.Size = new Size(180, 22);
+            przegladajWpisyToolStripMenuItem.Size = new Size(219, 26);
             przegladajWpisyToolStripMenuItem.Text = "P&rzegladaj wpisy";
             przegladajWpisyToolStripMenuItem.Click += przegladajWpisyToolStripMenuItem_Click;
+            // 
+            // wylogujSięToolStripMenuItem
+            // 
+            wylogujSięToolStripMenuItem.Name = "wylogujSięToolStripMenuItem";
+            wylogujSięToolStripMenuItem.Size = new Size(100, 24);
+            wylogujSięToolStripMenuItem.Text = "Wyloguj się";
+            wylogujSięToolStripMenuItem.Click += wylogujSięToolStripMenuItem_Click;
             // 
             // panel1
             // 
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(0, 24);
+            panel1.Location = new Point(0, 30);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1050, 576);
+            panel1.Size = new Size(1200, 770);
             panel1.TabIndex = 3;
             // 
             // PanelAdministratora
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1050, 600);
+            ClientSize = new Size(1200, 800);
             Controls.Add(panel1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
-            Margin = new Padding(3, 2, 3, 2);
-            MinimumSize = new Size(702, 460);
+            MinimumSize = new Size(800, 598);
             Name = "PanelAdministratora";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Mobile Serwis";
@@ -113,5 +121,6 @@
         private ToolStripMenuItem dodajWpisSerwisuToolStripMenuItem;
         private ToolStripMenuItem przegladajWpisyToolStripMenuItem;
         private Panel panel1;
+        private ToolStripMenuItem wylogujSięToolStripMenuItem;
     }
 }
