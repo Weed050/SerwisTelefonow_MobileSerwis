@@ -22,20 +22,44 @@ namespace SerwisTelefonow
 
         private void buttonCheck_Click(object sender, EventArgs e)
         {
-            if (!Int32.TryParse(textBoxLogin.Text, out int result))
+            if (!TryParseServiceCode(textBoxLogin.Text, out int serviceEntryId, out int clientId))
             {
-                MessageBox.Show("Nie podano prawid³owego loginu");
+                MessageBox.Show("Nie podano prawid³owego kodu logowania");
+                return;
             }
+
+            // Przyk³adowa walidacja wpisu serwisowego – zmodyfikuj kryteria wed³ug potrzeb
+            var serwis = _context.ServiceEntry
+                                 .Where(p => p.Id == serviceEntryId
+                                          && p.CenaWstepna != null
+                                          && p.CenaKoncowa == null);
+
+            if (serwis.Any())
+                MessageBox.Show("Jeszcze serwis siê nie zakoñczy³. Telefon jest jeszcze w naprawie.", "Przykro nam.");
             else
-            {
-                var serwis = _context.ServiceEntry.Where(p => p.Id == result && p.CenaWstepna != null && p.CenaKoncowa == null);
-                if (serwis.Any())
-                    MessageBox.Show($"Jeszcze serwis siê nie zakoñczy³. Telefon jest jeszcze w naprawie.", "Przykro nam.");
-                else
-                    MessageBox.Show($"Serwis zosta³ ukoñczony. Telefon jest do odebrania.", "Zapraszamy.");
-                textBoxLogin.Text = "";
-            }
+                MessageBox.Show("Serwis zosta³ ukoñczony. Telefon jest do odebrania.", "Zapraszamy.");
+
+            textBoxLogin.Text = "";
         }
+        public static bool TryParseServiceCode(string code, out int serviceEntryId, out int clientId)
+        {
+            serviceEntryId = 0;
+            clientId = 0;
+
+            if (string.IsNullOrEmpty(code) || code.Length != 12)
+                return false;
+
+            string servicePart = code.Substring(3, 3);
+            string clientPart = code.Substring(8, 3);
+
+            if (!int.TryParse(servicePart, out serviceEntryId))
+                return false;
+            if (!int.TryParse(clientPart, out clientId))
+                return false;
+
+            return true;
+        }
+
 
         private void StronaGlowna_FormClosing(object sender, FormClosingEventArgs e)
         {

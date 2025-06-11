@@ -168,7 +168,6 @@ namespace SerwisTelefonow.Models
         {
             try
             {
-                // walidacja
                 if (string.IsNullOrWhiteSpace(textBoxImie.Text) ||
                     string.IsNullOrWhiteSpace(textBoxNazwisko.Text))
                 {
@@ -183,34 +182,51 @@ namespace SerwisTelefonow.Models
                     return;
                 }
 
-                // nowa tranzakcja
                 using (var transaction = context.Database.BeginTransaction())
                 {
                     try
                     {
-                        // client
-                        var client = new Clients
+                        string imie = textBoxImie.Text.Trim();
+                        string nazwisko = textBoxNazwisko.Text.Trim();
+                        string telefon = textBoxTelefon.Text.Trim();
+
+                        var existingClient = context.Clients.FirstOrDefault(c =>
+                            c.Imie.ToLower() == imie.ToLower() &&
+                            c.Nazwisko.ToLower() == nazwisko.ToLower() &&
+                            (c.Telefon ?? string.Empty) == telefon);
+
+                        Clients client;
+                        if (existingClient != null)
                         {
-                            Imie = textBoxImie.Text,
-                            Nazwisko = textBoxNazwisko.Text,
-                            Telefon = textBoxTelefon.Text
-                        };
-                        context.Clients.Add(client);
-                        context.SaveChanges();  // id klienta do reszty
+                            client = existingClient;
+                        }
+                        else
+                        {
+                            client = new Clients
+                            {
+                                Imie = imie,
+                                Nazwisko = nazwisko,
+                                Telefon = telefon
+                            };
+                            context.Clients.Add(client);
+                            context.SaveChanges();  
+                        }
 
                         var serviceEntry = new ServiceEntry
                         {
                             IMEI = textBoxImei.Text,
                             Opis = textBoxDesc.Text,
                             CenaWstepna = GetPrice(textBoxFirstPrice.Text),
-                            KlientId = client.Id,  // id klienta
-                            KodModelu = phoneModel.KodModelu  // model
+                            KlientId = client.Id,          
+                            KodModelu = phoneModel.KodModelu 
                         };
                         context.ServiceEntry.Add(serviceEntry);
-                        context.SaveChanges();
+                        context.SaveChanges(); 
 
                         transaction.Commit();
-                        MessageBox.Show("Pomyślnie zapisano dane");
+
+                        string code = GenerateServiceCode(serviceEntry.Id, client.Id);
+                        textBoxServisCode.Text = code;
                         LoadArrayBox();
                     }
                     catch (Exception ex)
@@ -229,6 +245,8 @@ namespace SerwisTelefonow.Models
                 MessageBox.Show($"Nieoczekiwany błąd: {ex.Message}");
             }
         }
+
+
         private decimal? GetPrice(string text)
         {
             if (!decimal.TryParse(text, out var price))
@@ -323,5 +341,31 @@ namespace SerwisTelefonow.Models
                 MessageBox.Show($"Błąd podczas dodawania modelu: {ex.Message}");
             }
         }
+        public static string GenerateServiceCode(int serviceEntryId, int clientId)
+        {
+            const int idFieldLength = 3; 
+
+            string servicePart = serviceEntryId.ToString("D" + idFieldLength);
+            string clientPart = clientId.ToString("D" + idFieldLength);
+
+            char RandomChar(Random rnd)
+            {
+                const string pool = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                return pool[rnd.Next(pool.Length)];
+            }
+
+            Random rnd = new Random();
+            StringBuilder sb = new StringBuilder(12);
+            for (int i = 0; i < 3; i++) { sb.Append(RandomChar(rnd)); }
+            sb.Append(servicePart);
+            for (int i = 0; i < 2; i++) { sb.Append(RandomChar(rnd)); }
+            sb.Append(clientPart);
+            sb.Append(RandomChar(rnd));
+
+            return sb.ToString();
+        }
+
+
+
     }
 }

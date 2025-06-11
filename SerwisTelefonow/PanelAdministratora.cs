@@ -73,5 +73,11 @@ namespace SerwisTelefonow
         {
             Application.Exit();
         }
+
+        private void wydrukujZgłoszenieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PrintServisInfo printServisInfo = new PrintServisInfo(context);
+            OpenForm(printServisInfo);
+        }
     }
 }

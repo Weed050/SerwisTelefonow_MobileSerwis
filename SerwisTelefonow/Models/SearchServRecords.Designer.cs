@@ -46,12 +46,16 @@ namespace SerwisTelefonow.Models
             buttonSaveModel = new Button();
             buttonDeletePhoneModel = new Button();
             button1 = new Button();
+            groupBox4 = new GroupBox();
+            label3 = new Label();
+            textBoxServisCode = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridViewServRecords).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewClients).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewPhoneModel).BeginInit();
+            groupBox4.SuspendLayout();
             SuspendLayout();
             // 
             // labelTitle
@@ -84,6 +88,7 @@ namespace SerwisTelefonow.Models
             dataGridViewServRecords.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewServRecords.Size = new Size(974, 295);
             dataGridViewServRecords.TabIndex = 1;
+            dataGridViewServRecords.CellClick += dataGridViewServRecords_CellClick;
             // 
             // buttonDeleteClientRow
             // 
@@ -245,20 +250,50 @@ namespace SerwisTelefonow.Models
             // 
             // button1
             // 
-            button1.Location = new Point(1457, 317);
+            button1.Location = new Point(1424, 455);
             button1.Name = "button1";
             button1.Size = new Size(124, 29);
             button1.TabIndex = 12;
-            button1.Text = "odświerz dane";
+            button1.Text = "Odświerz dane";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
+            // 
+            // groupBox4
+            // 
+            groupBox4.Controls.Add(label3);
+            groupBox4.Controls.Add(textBoxServisCode);
+            groupBox4.Location = new Point(42, 356);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new Size(201, 128);
+            groupBox4.TabIndex = 13;
+            groupBox4.TabStop = false;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(15, 39);
+            label3.Name = "label3";
+            label3.Size = new Size(171, 20);
+            label3.TabIndex = 1;
+            label3.Text = "Kod wpisu serwisowego:";
+            // 
+            // textBoxServisCode
+            // 
+            textBoxServisCode.Location = new Point(15, 79);
+            textBoxServisCode.Name = "textBoxServisCode";
+            textBoxServisCode.ReadOnly = true;
+            textBoxServisCode.Size = new Size(171, 27);
+            textBoxServisCode.TabIndex = 0;
+            textBoxServisCode.Text = "(tutaj wyświetli się kod)";
+            textBoxServisCode.TextAlign = HorizontalAlignment.Center;
             // 
             // SearchServRecords
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
+            BackColor = Color.LightGray;
             ClientSize = new Size(1890, 965);
+            Controls.Add(groupBox4);
             Controls.Add(button1);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
@@ -275,6 +310,8 @@ namespace SerwisTelefonow.Models
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewPhoneModel).EndInit();
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -296,5 +333,8 @@ namespace SerwisTelefonow.Models
         private Button buttonSaveModel;
         private Button buttonDeletePhoneModel;
         private Button button1;
+        private GroupBox groupBox4;
+        private Label label3;
+        private TextBox textBoxServisCode;
     }
 }

@@ -35,6 +35,7 @@
             przegladajWpisyToolStripMenuItem = new ToolStripMenuItem();
             wylogujSięToolStripMenuItem = new ToolStripMenuItem();
             panel1 = new Panel();
+            wydrukujZgłoszenieToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -57,7 +58,7 @@
             // 
             // dodajSerwisToolStripMenuItem
             // 
-            dodajSerwisToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dodajWpisSerwisuToolStripMenuItem, przegladajWpisyToolStripMenuItem });
+            dodajSerwisToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dodajWpisSerwisuToolStripMenuItem, przegladajWpisyToolStripMenuItem, wydrukujZgłoszenieToolStripMenuItem });
             dodajSerwisToolStripMenuItem.Name = "dodajSerwisToolStripMenuItem";
             dodajSerwisToolStripMenuItem.Size = new Size(72, 24);
             dodajSerwisToolStripMenuItem.Text = "&Serwisy";
@@ -65,14 +66,14 @@
             // dodajWpisSerwisuToolStripMenuItem
             // 
             dodajWpisSerwisuToolStripMenuItem.Name = "dodajWpisSerwisuToolStripMenuItem";
-            dodajWpisSerwisuToolStripMenuItem.Size = new Size(219, 26);
+            dodajWpisSerwisuToolStripMenuItem.Size = new Size(228, 26);
             dodajWpisSerwisuToolStripMenuItem.Text = "&Dodaj wpis serwisu";
             dodajWpisSerwisuToolStripMenuItem.Click += dodajWpisSerwisuToolStripMenuItem_Click;
             // 
             // przegladajWpisyToolStripMenuItem
             // 
             przegladajWpisyToolStripMenuItem.Name = "przegladajWpisyToolStripMenuItem";
-            przegladajWpisyToolStripMenuItem.Size = new Size(219, 26);
+            przegladajWpisyToolStripMenuItem.Size = new Size(228, 26);
             przegladajWpisyToolStripMenuItem.Text = "P&rzegladaj wpisy";
             przegladajWpisyToolStripMenuItem.Click += przegladajWpisyToolStripMenuItem_Click;
             // 
@@ -91,6 +92,13 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1200, 770);
             panel1.TabIndex = 3;
+            // 
+            // wydrukujZgłoszenieToolStripMenuItem
+            // 
+            wydrukujZgłoszenieToolStripMenuItem.Name = "wydrukujZgłoszenieToolStripMenuItem";
+            wydrukujZgłoszenieToolStripMenuItem.Size = new Size(228, 26);
+            wydrukujZgłoszenieToolStripMenuItem.Text = "Wydrukuj zgłoszenie";
+            wydrukujZgłoszenieToolStripMenuItem.Click += wydrukujZgłoszenieToolStripMenuItem_Click;
             // 
             // PanelAdministratora
             // 
@@ -122,5 +130,6 @@
         private ToolStripMenuItem przegladajWpisyToolStripMenuItem;
         private Panel panel1;
         private ToolStripMenuItem wylogujSięToolStripMenuItem;
+        private ToolStripMenuItem wydrukujZgłoszenieToolStripMenuItem;
     }
 }

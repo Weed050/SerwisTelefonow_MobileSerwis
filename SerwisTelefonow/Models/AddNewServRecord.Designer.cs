@@ -41,6 +41,8 @@
             textBoxDesc = new TextBox();
             label7 = new Label();
             groupBox1 = new GroupBox();
+            textBoxServisCode = new TextBox();
+            label18 = new Label();
             buttonClearForm = new Button();
             label12 = new Label();
             label11 = new Label();
@@ -220,6 +222,8 @@
             // groupBox1
             // 
             groupBox1.Anchor = AnchorStyles.None;
+            groupBox1.Controls.Add(textBoxServisCode);
+            groupBox1.Controls.Add(label18);
             groupBox1.Controls.Add(buttonClearForm);
             groupBox1.Controls.Add(label12);
             groupBox1.Controls.Add(label11);
@@ -243,6 +247,30 @@
             groupBox1.Size = new Size(629, 564);
             groupBox1.TabIndex = 23;
             groupBox1.TabStop = false;
+            // 
+            // textBoxServisCode
+            // 
+            textBoxServisCode.BorderStyle = BorderStyle.FixedSingle;
+            textBoxServisCode.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxServisCode.Location = new Point(146, 440);
+            textBoxServisCode.Margin = new Padding(4, 5, 4, 5);
+            textBoxServisCode.Name = "textBoxServisCode";
+            textBoxServisCode.ReadOnly = true;
+            textBoxServisCode.Size = new Size(171, 27);
+            textBoxServisCode.TabIndex = 30;
+            textBoxServisCode.Text = "(tutaj wyświetli się kod)";
+            textBoxServisCode.TextAlign = HorizontalAlignment.Center;
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label18.Location = new Point(16, 442);
+            label18.Margin = new Padding(4, 0, 4, 0);
+            label18.Name = "label18";
+            label18.Size = new Size(122, 25);
+            label18.TabIndex = 28;
+            label18.Text = "Kod Serwisu:";
             // 
             // buttonClearForm
             // 
@@ -612,5 +640,7 @@
         private TextBox textBoxModelCode2;
         private TextBox textBoxFullName;
         private Label label17;
+        private Label label18;
+        private TextBox textBoxServisCode;
     }
 }

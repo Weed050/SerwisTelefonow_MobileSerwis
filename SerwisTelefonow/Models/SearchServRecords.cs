@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SerwisTelefonow.Data;
+using SerwisTelefonow.DBModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -339,5 +340,50 @@ namespace SerwisTelefonow.Models
         {
             RefreshData();
         }
+        public static string GenerateServiceCode(int serviceEntryId, int clientId)
+        {
+            const int idFieldLength = 3;
+
+            string servicePart = serviceEntryId.ToString("D" + idFieldLength);
+            string clientPart = clientId.ToString("D" + idFieldLength);
+
+            char RandomChar(Random rnd)
+            {
+                const string pool = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                return pool[rnd.Next(pool.Length)];
+            }
+
+            Random rnd = new Random();
+            StringBuilder sb = new StringBuilder(12);
+            for (int i = 0; i < 3; i++) { sb.Append(RandomChar(rnd)); }
+            sb.Append(servicePart);
+            for (int i = 0; i < 2; i++) { sb.Append(RandomChar(rnd)); }
+            sb.Append(clientPart);
+            sb.Append(RandomChar(rnd));
+
+            return sb.ToString();
+        }
+
+
+            private void dataGridViewServRecords_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Pomijamy kliknięcia w nagłówki
+            if (e.RowIndex < 0)
+                return;
+
+            // Pobieramy wiersz, z którego kliknięto pole
+            DataGridViewRow row = dataGridViewServRecords.Rows[e.RowIndex];
+            // Zakładamy, że DataGridView jest powiązany bezpośrednio z obiektami ServiceEntry
+            ServiceEntry serviceEntry = row.DataBoundItem as ServiceEntry;
+            if (serviceEntry != null)
+            {
+                // Generujemy kod z wykorzystaniem ID wpisu serwisowego oraz ID klienta
+                string code = GenerateServiceCode(serviceEntry.Id, serviceEntry.KlientId);
+                // Możesz wyświetlić kod w dedykowanej kontrolce, np. TextBoxServisCode
+                textBoxServisCode.Text = code;
+        }
+        
+
     }
+}
 }
