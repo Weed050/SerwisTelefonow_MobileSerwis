@@ -21,7 +21,7 @@ Aplikacja jest na .NET 8.0
 
 ## Używanie aplikacji:
 # Strona startowa:
-- Na stronie startowej urzytkownik (klient serwisu) może sprawdzić postęp naprawy: ukończone lub nie.
+- Na stronie startowej użytkownik (klient serwisu) może sprawdzić postęp naprawy: ukończone lub nie.
   Aby to zrobić musi podać kod, który pownien być mu wręczony na wydrukowanej karcie serwisowej.
 
 - Pomijamy panel logowania i authentykacji, więc przechodzimy do panelu serwisanta:
@@ -49,7 +49,7 @@ Składa się z identyfikatorów zapisanych w bazie danych wraz z losowymi litera
 - Po przejściu na Serwisy -> "Wydruk zgłoszenie":
 ![image](https://github.com/user-attachments/assets/30c7afef-39b3-460a-8660-0535423ad7e0)
   - Możemy wybrać którego wpisu serwisowego chcemy wygenerować kartę serwisową (z aktualną lokalną datą)
-  - Mamy możliwość zapisać albo wydrukować dany plik formatu pdf. (Jeden jest dla serwisanta a inny dla klineta (na co wskazuje przerywana linia)).
+  - Mamy możliwość zapisać albo wydrukować dany plik formatu pdf. (Jeden jest dla serwisanta a inny dla klienta (na co wskazuje przerywana linia)).
   Służy on jako dowód na oddanie telefonu serwisowi na czas naprawy.
  
 
