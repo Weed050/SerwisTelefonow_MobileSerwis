@@ -49,6 +49,10 @@ namespace SerwisTelefonow.Models
             groupBox4 = new GroupBox();
             label3 = new Label();
             textBoxServisCode = new TextBox();
+            groupBox5 = new GroupBox();
+            buttonSearchSerEntrByCode = new Button();
+            textBoxServCodeIn = new TextBox();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridViewServRecords).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewClients).BeginInit();
             groupBox1.SuspendLayout();
@@ -56,6 +60,7 @@ namespace SerwisTelefonow.Models
             groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewPhoneModel).BeginInit();
             groupBox4.SuspendLayout();
+            groupBox5.SuspendLayout();
             SuspendLayout();
             // 
             // labelTitle
@@ -287,12 +292,51 @@ namespace SerwisTelefonow.Models
             textBoxServisCode.Text = "(tutaj wyświetli się kod)";
             textBoxServisCode.TextAlign = HorizontalAlignment.Center;
             // 
+            // groupBox5
+            // 
+            groupBox5.Controls.Add(buttonSearchSerEntrByCode);
+            groupBox5.Controls.Add(textBoxServCodeIn);
+            groupBox5.Controls.Add(label4);
+            groupBox5.Location = new Point(12, 209);
+            groupBox5.Name = "groupBox5";
+            groupBox5.Size = new Size(243, 141);
+            groupBox5.TabIndex = 14;
+            groupBox5.TabStop = false;
+            // 
+            // buttonSearchSerEntrByCode
+            // 
+            buttonSearchSerEntrByCode.Location = new Point(15, 106);
+            buttonSearchSerEntrByCode.Name = "buttonSearchSerEntrByCode";
+            buttonSearchSerEntrByCode.Size = new Size(210, 29);
+            buttonSearchSerEntrByCode.TabIndex = 4;
+            buttonSearchSerEntrByCode.Text = "Wyszukaj wpisu serwisowego";
+            buttonSearchSerEntrByCode.UseVisualStyleBackColor = true;
+            buttonSearchSerEntrByCode.Click += buttonSearchSerEntrByCode_Click;
+            // 
+            // textBoxServCodeIn
+            // 
+            textBoxServCodeIn.Location = new Point(30, 61);
+            textBoxServCodeIn.Name = "textBoxServCodeIn";
+            textBoxServCodeIn.Size = new Size(186, 27);
+            textBoxServCodeIn.TabIndex = 3;
+            textBoxServCodeIn.TextAlign = HorizontalAlignment.Center;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(15, 23);
+            label4.Name = "label4";
+            label4.Size = new Size(210, 20);
+            label4.TabIndex = 2;
+            label4.Text = "Podaj kod wpisu serwisowego:";
+            // 
             // SearchServRecords
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightGray;
             ClientSize = new Size(1890, 965);
+            Controls.Add(groupBox5);
             Controls.Add(groupBox4);
             Controls.Add(button1);
             Controls.Add(groupBox3);
@@ -312,6 +356,8 @@ namespace SerwisTelefonow.Models
             ((System.ComponentModel.ISupportInitialize)dataGridViewPhoneModel).EndInit();
             groupBox4.ResumeLayout(false);
             groupBox4.PerformLayout();
+            groupBox5.ResumeLayout(false);
+            groupBox5.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -336,5 +382,9 @@ namespace SerwisTelefonow.Models
         private GroupBox groupBox4;
         private Label label3;
         private TextBox textBoxServisCode;
+        private GroupBox groupBox5;
+        private TextBox textBoxServCodeIn;
+        private Label label4;
+        private Button buttonSearchSerEntrByCode;
     }
 }

@@ -19,6 +19,8 @@ namespace SerwisTelefonow.Models
     public partial class AddNewServRecord : Form
     {
         private System.Windows.Forms.TextBox[] textBoxes;
+                // przechowywanie kontrolek do czyszczenia ich w pętli foreach            
+
         private readonly AppDbContext context;
         public AddNewServRecord(AppDbContext _context)
         {
@@ -29,14 +31,15 @@ namespace SerwisTelefonow.Models
 
             LoadClients();
             LoadModels();
+            // wczytanie danych do tabel
 
 
             AlignBoxesInForm();
             AdjustModelsTableWidth();
             AdjustClientTableWidth();
-
+            // wyrównanie elementów po wczytaniu danych
         }
-        private void AlignBoxesInForm()
+        private void AlignBoxesInForm()  // wyrównanie w poziomie
         {
             int totalWidth = this.ClientSize.Width;
 
@@ -79,7 +82,7 @@ namespace SerwisTelefonow.Models
             }
 
             var source = query
-                .OrderByDescending(x => x.Id) // Sortowanie od najnowszego
+                .OrderByDescending(x => x.Id) // sortowanie od najnowszego
                 .Select(x => new
                 {
                     id = x.Id,
@@ -132,7 +135,7 @@ namespace SerwisTelefonow.Models
             dataGridViewClients.Width = totalWidth;
             groupBoxClientData.Width = dataGridViewClients.Width + (2 * padding);
 
-            // Wyśrodkowanie tabeli w grupie
+            // wyśrodkowanie tabeli w groupBox-ie
             dataGridViewClients.Left = (groupBoxClientData.ClientSize.Width - dataGridViewClients.Width) / 2;
 
             dataGridViewClients.Refresh();
@@ -166,6 +169,8 @@ namespace SerwisTelefonow.Models
 
         private void buttonCheck_Click(object sender, EventArgs e)
         {
+            // główny formularz zgłoszenia
+
             try
             {
                 if (string.IsNullOrWhiteSpace(textBoxImie.Text) ||
@@ -249,6 +254,8 @@ namespace SerwisTelefonow.Models
 
         private decimal? GetPrice(string text)
         {
+            // parsowanie ceny ze stringa
+
             if (!decimal.TryParse(text, out var price))
             {
                 throw new ValidationException("To musi być liczba");
@@ -300,6 +307,8 @@ namespace SerwisTelefonow.Models
                 text.Text = string.Empty;
         }
 
+
+        // dodanie nowego wpisu w PhoneModel
         private void buttonAddNewModel_Click(object sender, EventArgs e)
         {
             try
@@ -341,6 +350,8 @@ namespace SerwisTelefonow.Models
                 MessageBox.Show($"Błąd podczas dodawania modelu: {ex.Message}");
             }
         }
+
+        // Wygenerowanie kodu serwisowego dla serwisanta (dla klienta jest w karcie serwisowej)
         public static string GenerateServiceCode(int serviceEntryId, int clientId)
         {
             const int idFieldLength = 3; 

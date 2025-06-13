@@ -1,15 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SerwisTelefonow.Data;
+﻿using SerwisTelefonow.Data;
 using SerwisTelefonow.DBModels;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+
 
 namespace SerwisTelefonow.Models
 {
@@ -365,7 +358,7 @@ namespace SerwisTelefonow.Models
         }
 
 
-            private void dataGridViewServRecords_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridViewServRecords_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Pomijamy kliknięcia w nagłówki
             if (e.RowIndex < 0)
@@ -381,9 +374,62 @@ namespace SerwisTelefonow.Models
                 string code = GenerateServiceCode(serviceEntry.Id, serviceEntry.KlientId);
                 // Możesz wyświetlić kod w dedykowanej kontrolce, np. TextBoxServisCode
                 textBoxServisCode.Text = code;
+            }
         }
-        
+        public static bool TryParseServiceCode(string code, out int serviceEntryId, out int clientId)
+        {
+            serviceEntryId = 0;
+            clientId = 0;
 
+            if (string.IsNullOrEmpty(code) || code.Length != 12)
+                return false;
+
+            string servicePart = code.Substring(3, 3);
+            string clientPart = code.Substring(8, 3);
+
+            if (!int.TryParse(servicePart, out serviceEntryId))
+                return false;
+            if (!int.TryParse(clientPart, out clientId))
+                return false;
+
+            return true;
+        }
+
+        private void buttonSearchSerEntrByCode_Click(object sender, EventArgs e)
+        {
+            string code = textBoxServCodeIn.Text.Trim();
+
+            // 1) Parsujemy kod
+            if (!TryParseServiceCode(code, out int serviceEntryId, out int clientId))
+            {
+                MessageBox.Show("Niepoprawny kod serwisowy.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 2) Wyczyść zaznaczenie
+            dataGridViewServRecords.ClearSelection();
+
+            // 3) Przejdź przez wszystkie wiersze i znajdź to ID
+            bool found = false;
+            foreach (DataGridViewRow row in dataGridViewServRecords.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                if ((int)row.Cells["Id"].Value == serviceEntryId)
+                {
+                    // 4a) Zaznacz wiersz
+                    row.Selected = true;
+                    // 4b) Przewiń do niego
+                    dataGridViewServRecords.FirstDisplayedScrollingRowIndex = row.Index;
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+            {
+                MessageBox.Show($"Nie znaleziono wpisu o ID = {serviceEntryId}.", "Brak wyników", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
-}
 }

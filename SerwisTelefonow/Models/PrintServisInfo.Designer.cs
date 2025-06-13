@@ -28,7 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            dataGridViewServRecords = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewServRecords).BeginInit();
             SuspendLayout();
+            // 
+            // dataGridViewServRecords
+            // 
+            dataGridViewServRecords.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewServRecords.Dock = DockStyle.Fill;
+            dataGridViewServRecords.Location = new Point(0, 0);
+            dataGridViewServRecords.MultiSelect = false;
+            dataGridViewServRecords.Name = "dataGridViewServRecords";
+            dataGridViewServRecords.RowHeadersWidth = 51;
+            dataGridViewServRecords.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewServRecords.Size = new Size(1493, 771);
+            dataGridViewServRecords.TabIndex = 0;
+            dataGridViewServRecords.SelectionChanged += dataGridViewServRecords_SelectionChanged;
             // 
             // PrintServisInfo
             // 
@@ -36,11 +51,15 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightGray;
             ClientSize = new Size(1493, 771);
+            Controls.Add(dataGridViewServRecords);
             Name = "PrintServisInfo";
             Text = "PrintServisInfo";
+            ((System.ComponentModel.ISupportInitialize)dataGridViewServRecords).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
+
+        private DataGridView dataGridViewServRecords;
     }
 }

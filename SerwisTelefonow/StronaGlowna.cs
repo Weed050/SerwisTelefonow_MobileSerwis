@@ -7,6 +7,7 @@ namespace SerwisTelefonow
     public partial class StronaGlowna : Form
     {
         private readonly AppDbContext _context;
+        // dependency injection
         public StronaGlowna(AppDbContext context)
         {
             InitializeComponent();
@@ -28,7 +29,7 @@ namespace SerwisTelefonow
                 return;
             }
 
-            // Przyk³adowa walidacja wpisu serwisowego – zmodyfikuj kryteria wed³ug potrzeb
+            // walidacja service entry (je¿eli nie ma ceny ostatecznej, to serwis siê jeszcze nie zakoñczy³)
             var serwis = _context.ServiceEntry
                                  .Where(p => p.Id == serviceEntryId
                                           && p.CenaWstepna != null
@@ -41,6 +42,8 @@ namespace SerwisTelefonow
 
             textBoxLogin.Text = "";
         }
+
+        // kod posiada losowe znaki oraz zaszyte id na odpowiednich polach
         public static bool TryParseServiceCode(string code, out int serviceEntryId, out int clientId)
         {
             serviceEntryId = 0;
@@ -63,6 +66,7 @@ namespace SerwisTelefonow
 
         private void StronaGlowna_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // zapobieganie nie wy³¹czeniu siê aplikacji
             Application.Exit();
         }
     }
